@@ -1,3 +1,9 @@
+import HomePage from "@/components/Home/HomePage";
+
 export default function Home() {
-  return <>Trang Thông tin</>;
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 }

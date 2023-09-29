@@ -1,7 +1,14 @@
-import React from "react";
+import SideBar from "@/components/SideBar/SideBar";
+import TableStudentsContainer from "@/components/TableStudentsContainer/TableStudentsContainer";
+import { Box } from "@mui/material";
 
 const AdminPage = () => {
-  return <div>AdminPage</div>;
+  return (
+    <Box sx={{ display: "flex" }}>
+      <SideBar />
+      <TableStudentsContainer />
+    </Box>
+  );
 };
 
 export default AdminPage;

@@ -1,7 +1,15 @@
 import React from "react";
+import SlideBar from "@/components/SlideBar/SlideBar";
+import { Container } from "@mui/material";
 
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <Container fixed>
+        <SlideBar />
+      </Container>
+    </>
+  );
 };
 
 export default HomePage;

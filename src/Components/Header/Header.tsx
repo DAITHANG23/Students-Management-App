@@ -10,7 +10,6 @@ import {
   Menu,
   Container,
   Avatar,
-  Button,
   Tooltip,
   MenuItem,
 } from "@mui/material";
@@ -18,17 +17,15 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 
 import Link from "next/link";
-import Image from "next/image";
+
 import {
-  StyledBoxLogoDisplayMd,
   StyledImageLogo,
-  StyledBoxLogoDisplaySx,
   StyledLinkMenu,
   StyledLinkNav,
   StyledBoxAvatar,
-  StyledMenuAvatar,
   StyledButtonLink,
-} from "./Header.styles";
+  StyledBadge,
+} from "@/components/Header/Header.styles";
 
 const pages = ["Admin", "Document", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
@@ -53,7 +50,16 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar
+      position="static"
+      sx={{
+        position: "fixed",
+        top: "0",
+        left: "0",
+        zIndex: "10",
+        backgroundColor: "rgba(66, 165, 245, 0.7)",
+      }}
+    >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href="/">
@@ -142,7 +148,13 @@ function ResponsiveAppBar() {
           <StyledBoxAvatar>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu}>
-                <Avatar src="/broken-image.jpg" />
+                <StyledBadge
+                  overlap="circular"
+                  anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+                  variant="dot"
+                >
+                  <Avatar src={`/images/avatar_6.jpg`} />
+                </StyledBadge>
               </IconButton>
             </Tooltip>
             <Menu
