@@ -22,9 +22,7 @@ import {
   StyledModal,
   StyledBoxModal,
   StyledModalEdit,
-  StyledButtonDelete,
-  StyledButtonCancel,
-  StyledBoxButton,
+  StyledBoxModalUpdate,
 } from "@/components/StudentItem/StudentItem.styles";
 import StudentUpdate from "../StudentUpdate/StudentUpdate";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -95,6 +93,7 @@ const StudentItem = (props: UserItemProps) => {
 
   const handleStopDelete = () => {
     setIsDeleting(false);
+    setIsEditing(false);
   };
   // view student
   const onViewUserItem = () => {
@@ -124,8 +123,15 @@ const StudentItem = (props: UserItemProps) => {
   return (
     <>
       {isEditing && (
-        <StyledModalEdit open={isEditing} onClose={handleStopDelete}>
-          <StudentUpdate />
+        <StyledModalEdit
+          open={isEditing}
+          onClose={handleStopDelete}
+          aria-labelledby="modal-modal-update"
+          aria-describedby="modal-modal-update"
+        >
+          <StyledBoxModalUpdate>
+            <StudentUpdate />
+          </StyledBoxModalUpdate>
         </StyledModalEdit>
       )}
       {isDeleting && (
@@ -179,7 +185,7 @@ const StudentItem = (props: UserItemProps) => {
         <TableCell>
           <Box>
             <Typography sx={{ fontSize: "14px" }}>
-              Cha:{" "}
+              Cha:
               <span
                 style={{
                   fontSize: "14px",
@@ -191,7 +197,7 @@ const StudentItem = (props: UserItemProps) => {
               </span>
             </Typography>
             <Typography sx={{ fontSize: "14px" }}>
-              Mẹ:{" "}
+              Mẹ:
               <span
                 style={{
                   fontSize: "14px",

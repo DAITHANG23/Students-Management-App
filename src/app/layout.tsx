@@ -8,6 +8,7 @@ import theme from "@/themes/themes";
 import Head from "next/head";
 
 import Providers from "@/app/providers";
+import AppProvider from "@/contexts/AppContext";
 export const metadata: Metadata = {
   title: "Đoàn Thiếu Nhi Thánh Thể Giáo Xứ Tử Đình",
   description: "Thông Tin Đoàn Thiếu nhi Thánh thể giáo xứ Tử Đình",
@@ -40,13 +41,15 @@ export default function RootLayout({
       </Head>
       <body>
         <Providers>
-          <ThemeProvider theme={theme}>
-            <Header />
+          <AppProvider>
+            <ThemeProvider theme={theme}>
+              <Header />
 
-            <Box sx={{ marginTop: "100px" }}> {children}</Box>
+              <Box sx={{ marginTop: "100px" }}> {children}</Box>
 
-            <Footer />
-          </ThemeProvider>
+              <Footer />
+            </ThemeProvider>
+          </AppProvider>
         </Providers>
       </body>
     </html>

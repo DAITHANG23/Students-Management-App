@@ -120,6 +120,11 @@ export const StyledModalEdit = styled(Modal)(() => ({
   left: "calc(50% - 15rem)",
 }));
 
+export const StyledBoxModalUpdate = styled(Box)(() => ({
+  overflow: "auto",
+  height: "1000px",
+}));
+
 export const StyledBoxButton = styled(Box)(() => ({
   display: "flex",
   justifyContent: "flex-end",
@@ -148,4 +153,10 @@ export const StyledButtonDelete = styled(Box)(({ theme }) => ({
   boxShadow: "0 2px 4px rgba(0, 0, 0, 0.26)",
   fontWeight: "bold",
   textDecoration: "none",
+}));
+
+export const StyledTitleForm = styled(Typography)(({ theme }) => ({
+  fontSize: "20px",
+  fontWeight: "700",
+  paddingBottom: theme.spacing(3),
 }));

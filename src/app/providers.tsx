@@ -1,7 +1,6 @@
 "use client";
 
 import { QueryClient, QueryClientProvider } from "react-query";
-import { useState } from "react";
 
 import { ReactQueryDevtools } from "react-query/devtools";
 

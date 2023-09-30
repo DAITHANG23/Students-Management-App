@@ -17,7 +17,7 @@ import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Collapse } from "@mui/material";
 
 const SideBar = () => {
-  //const { onChoosePage } = useContext(AppContext) as AppContextType;
+  const { onChoosePage } = useContext(AppContext) as AppContextType;
 
   const [isChooseAunhiPage, setIsChooseAunhiPage] = useState<boolean>(false);
 
@@ -49,7 +49,7 @@ const SideBar = () => {
     setOpen(true);
 
     route.push("/admin/aunhi");
-    //onChoosePage("user");
+    onChoosePage("user");
   };
 
   const onChooseThieunhiPage = () => {
@@ -62,7 +62,7 @@ const SideBar = () => {
     setIsChooseDutruongPage(false);
 
     route.push("/admin/thieunhi");
-    //onChoosePage("role");
+    onChoosePage("role");
   };
 
   const onChooseNghiasiPage = () => {
