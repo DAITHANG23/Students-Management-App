@@ -3,7 +3,7 @@ import SideBar from "@/components/SideBar/SideBar";
 import { Box } from "@mui/material";
 import React from "react";
 
-const ThieuNhi = () => {
+const ChienconPage = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <SideBar />
@@ -14,4 +14,4 @@ const ThieuNhi = () => {
   );
 };
 
-export default ThieuNhi;
+export default ChienconPage;

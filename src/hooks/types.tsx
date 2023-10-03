@@ -7,7 +7,7 @@ export interface Students {
   dayOfBirth?: string;
   saintNameFather?: string;
   nameFather?: string;
-  phoneFather: string;
+  phoneFather?: string;
   saintNameMother?: string;
   nameMother?: string;
   phoneMother?: string;
@@ -17,6 +17,25 @@ export interface Students {
   date?: string;
   time?: string;
   image?: string;
+  score?: {
+    hk1: {
+      test15p: number;
+      test1Tiet: number;
+      exam: number;
+      averageScore: number;
+    };
+    hk2: {
+      test15p: number;
+      test1Tiet: number;
+      exam: number;
+      averageScore: number;
+    };
+    averageScoreTotal: number;
+    rank: number;
+    classification: string;
+    result: string;
+    noteResult: string;
+  };
 }
 
 export type Order = "asc" | "desc";
@@ -51,3 +70,13 @@ export type Class =
   | "Nghĩa 3"
   | "Dự trưởng 1"
   | "Dự trưởng 2";
+
+export type Page =
+  | "admin"
+  | "chiencon"
+  | "aunhi"
+  | "thieunhi"
+  | "nghiasi"
+  | "dutruong"
+  | "document"
+  | "blog";

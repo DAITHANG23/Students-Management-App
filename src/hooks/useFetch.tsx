@@ -1,13 +1,13 @@
-"use client";
+// "use client";
 
-import { getStudents } from "@/api";
-import { useQuery, useMutation, useQueryClient } from "react-query";
+// import { getStudents } from "@/api";
+// import { useQuery } from "react-query";
 
-import { Order, Students } from "@/hooks/types";
+// import { Order, Students } from "@/hooks/types";
 
-const QUERY_KEY = {
-  useGetStudents: ["fetchDataStudents"],
-};
+// const QUERY_KEY = {
+//   useGetStudents: ["fetchDataStudents"],
+// };
 
 // export const useStudents = (
 //   page: number,
@@ -37,15 +37,3 @@ const QUERY_KEY = {
 
 //   return { data, isLoading, error, isFetching, refetch };
 // };
-
-export const useStudents = () => {
-  const { data, isLoading, error, isFetching, refetch } = useQuery<Students[]>(
-    QUERY_KEY.useGetStudents,
-    ({ signal }) => getStudents({ signal }),
-    {
-      keepPreviousData: true,
-    }
-  );
-
-  return { data, isLoading, error, isFetching, refetch };
-};

@@ -1,22 +1,15 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
-import SideBar from "../SideBar/SideBar";
-import { Box, Typography, TextField } from "@mui/material";
+import SideBar from "@/components/SideBar/SideBar";
+import { Box, Typography, TextField, Input } from "@mui/material";
 
 import {
   StyledModal,
   StyledBoxModal,
 } from "@/components/StudentDetail/StudentDetail.styles";
-import { useForm, Controller } from "react-hook-form";
 
 import {
   StyledBoxContainer,
-  StyledForm,
-  StyledContentError,
-  StyledBoxDes,
-  StyleInputNumberPhone,
-  StyledBoxButtonModal,
-  StyledBtnCreate,
   StyledSpan,
   StyledButtonGeneral,
   StyledBoxButton,
@@ -34,20 +27,24 @@ import {
   StyledAvatar,
   StyledSpanAvatar,
   StyledButtonDelAvatar,
-  StyledBoxFormDetail,
-  StyledFormControl,
-  StyledBoxInput,
-  StyledBoxButtonForm,
-  StyledBoxInputTel,
-  StyledTextField,
+  StyledButtonCancel,
+  StyledButtonDelete,
+  StyledBoxButtonDelete,
+  StyledLabel,
+  StyledInputUpdate,
+  StyledBoxImageContainer,
+  StyledImage,
+  StyledBoxIcon,
+  StyledTitleIcon,
 } from "@/components/StudentDetail/StudentDetail.styles";
 import { Students } from "@/hooks/types";
 import { useRouter } from "next/navigation";
-
-import { BsDot } from "react-icons/bs";
 import { Icon } from "@iconify/react";
+import { BsDot } from "react-icons/bs";
+
 import StudentUpdate from "../StudentUpdate/StudentUpdate";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
+import TableScore from "../TableScore/TableScore";
 
 interface StudentDetailProps {
   id: string;
@@ -62,68 +59,27 @@ const StudentDetail = ({ id }: StudentDetailProps) => {
 
   const [chooseScorePage, setChooseScorePage] = useState(false);
 
-  const { onStudentDetail } = useContext(AppContext) as AppContextType;
+  const [isLoadingDeletion, setIsLoadingDeletion] = useState(false);
+
+  const { studentDetail, onRemoveStudent } = useContext(
+    AppContext
+  ) as AppContextType;
 
   const route = useRouter();
 
-  const studentDetail: Students = {
-    id: "TD00230012",
-    name: "Nam",
-    lastName: "Nguyễn Đại ",
-    saintName: "Đaminh",
-    placeOfBirth: "HCM",
-    dayOfBirth: "1997-06-23",
-    image: "/images/avatar_4.jpg",
-    saintNameFather: "Đaminh",
-    nameFather: "Nguyễn Văn Hồng",
-    phoneFather: "0772757220",
-    saintNameMother: "Anna",
-    nameMother: "Nguyễn Thị Nguyệt",
-    phoneMother: "0772757335",
-    address: "778/22/22, Thong Nhat, p.15, Go Vap, TpHCM",
-    note: "Good",
-    classItem: "Ấu 3B",
+  const onRemoveStudentItem = () => {
+    setIsDeleting(true);
   };
 
-  // useEffect(() => {
-  //   if (studentDetail) {
-  //     onStudentDetail(studentDetail);
-  //   }
-  // }, [onStudentDetail]);
-
-  const onRemoveStudent = (id: string) => {
-    setIsDeleting(true);
+  const handleDelete = (id: string) => {
+    onRemoveStudent(id);
+    setIsLoadingDeletion(true);
+    route.push("/admin");
   };
 
   const handleStopDelete = () => {
     setIsDeleting(false);
   };
-
-  // const { register, handleSubmit, formState, control } = useForm({
-  //   defaultValues: {
-  //     id: studentDetail.id,
-  //     saintName: studentDetail.saintName,
-  //     name: studentDetail.name,
-  //     lastName: studentDetail.lastName,
-  //     classItem: studentDetail.classItem,
-  //     saintNameFather: studentDetail.saintNameFather,
-  //     nameFather: studentDetail.nameFather,
-  //     phoneFather: studentDetail.phoneFather,
-  //     image: studentDetail.image,
-  //     saintNameMother: studentDetail.saintNameMother,
-  //     nameMother: studentDetail.nameMother,
-  //     phoneMother: studentDetail.phoneMother,
-  //     note: studentDetail.note,
-  //     placeOfBirth: studentDetail.placeOfBirth,
-  //     dayOfBirth: studentDetail.dayOfBirth,
-  //   },
-  // });
-
-  // const { errors } = formState;
-
-  // const onFormSubmitUpdateUserHandle = handleSubmit((data) => {
-  //   route.push("/admin");
-  // });
 
   const onChoose = (value: Page) => {
     if (value === "General") {
@@ -149,10 +105,10 @@ const StudentDetail = ({ id }: StudentDetailProps) => {
           <StyledBoxModal>
             <StyledTitleBoxDel>Are you sure?</StyledTitleBoxDel>
             <Typography>
-              Do you really want to delete this event? This action cannot be
+              Do you really want to delete this student? This action cannot be
               undone.
             </Typography>
-            {/* <StyledBoxButton>
+            <StyledBoxButtonDelete sx={{ textAlign: "end" }}>
               {isLoadingDeletion && <p>Deleting, please wait...</p>}
               {!isLoadingDeletion && (
                 <>
@@ -164,7 +120,7 @@ const StudentDetail = ({ id }: StudentDetailProps) => {
                   </StyledButtonDelete>
                 </>
               )}
-            </StyledBoxButton> */}
+            </StyledBoxButtonDelete>
           </StyledBoxModal>
         </StyledModal>
       )}
@@ -200,13 +156,30 @@ const StudentDetail = ({ id }: StudentDetailProps) => {
           <StyledSpan styleactive={chooseScorePage}></StyledSpan>
         </StyledBoxButton>
 
-        {chooseScorePage && <Box>Score</Box>}
+        {chooseScorePage && <TableScore />}
 
         {chooseGeneralPage && (
           <StyledBoxInfoContainer>
             <StyledBoxAvatarContainer>
               <StyledBoxAvatar>
-                <StyledAvatar src={`/images/avatar_2.jpg`} />
+                <StyledLabel>
+                  <StyledInputUpdate type="file" />
+                  <StyledBoxImageContainer>
+                    <StyledImage>
+                      <StyledAvatar src={studentDetail?.image} />
+                    </StyledImage>
+
+                    <StyledBoxIcon>
+                      <Icon
+                        icon="material-symbols:add-a-photo"
+                        color="white"
+                        width={"32px"}
+                        height={"32px"}
+                      />
+                      <StyledTitleIcon>Photo Update</StyledTitleIcon>
+                    </StyledBoxIcon>
+                  </StyledBoxImageContainer>
+                </StyledLabel>
               </StyledBoxAvatar>
               <StyledSpanAvatar>
                 Allowed *.jpeg, *.jpg, *.png, *.gif
@@ -214,318 +187,12 @@ const StudentDetail = ({ id }: StudentDetailProps) => {
                 max size of 3.1MB
               </StyledSpanAvatar>
 
-              <StyledButtonDelAvatar onClick={() => onRemoveStudent(id)}>
+              <StyledButtonDelAvatar onClick={onRemoveStudentItem}>
                 Delete Student
               </StyledButtonDelAvatar>
             </StyledBoxAvatarContainer>
 
             <StudentUpdate />
-
-            {/* <StyledBoxFormDetail>
-              <StyledForm onSubmit={onFormSubmitUpdateUserHandle}>
-                <StyledFormControl>
-                  <StyledBoxInput>
-                    <Box>
-                      <StyledTextField
-                        required
-                        label="Mã số"
-                        type="text"
-                        id="id"
-                        {...register("id", {
-                          required: {
-                            value: true,
-                            message: "Please enter a id.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.id?.message}
-                      </StyledContentError>
-                    </Box>
-                    <Box>
-                      <StyledTextField
-                        required
-                        label="Tên thánh"
-                        type="text"
-                        id="saintName"
-                        {...register("saintName", {
-                          required: {
-                            value: true,
-                            message: "Please enter a saint name.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.saintName?.message}
-                      </StyledContentError>
-                    </Box>
-                  </StyledBoxInput>
-
-                  <StyledBoxInput>
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Họ"
-                        type="text"
-                        id="lastName"
-                        {...register("lastName", {
-                          required: {
-                            value: true,
-                            message: "Please enter a last name.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.lastName?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Tên"
-                        type="text"
-                        id="name"
-                        {...register("name", {
-                          required: {
-                            value: true,
-                            message: "Please enter a name.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.name?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-                  </StyledBoxInput>
-
-                  <StyledBoxInput>
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Lớp"
-                        type="text"
-                        id="classItem"
-                        {...register("classItem", {
-                          required: {
-                            value: true,
-                            message: "Please enter a class.",
-                          },
-                        })}
-                      />
-
-                      <StyledContentError>
-                        {errors.classItem?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Avatar"
-                        type="text"
-                        id="avatar"
-                        {...register("image", {
-                          required: {
-                            value: true,
-                            message: "Please enter a avatar.",
-                          },
-                        })}
-                      />
-
-                      <StyledContentError>
-                        {errors.image?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-                  </StyledBoxInput>
-
-                  <StyledBoxInput>
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Nơi sinh"
-                        type="text"
-                        id="placeOfBirth"
-                        {...register("placeOfBirth", {
-                          required: {
-                            value: true,
-                            message: "Please enter a  place of birth.",
-                          },
-                        })}
-                      />
-
-                      <StyledContentError>
-                        {errors.nameMother?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        type="date"
-                        id="dayOfBirth"
-                        {...register("dayOfBirth", {
-                          required: {
-                            value: true,
-                            message: "Please enter a  place of birth.",
-                          },
-                        })}
-                      />
-
-                      <StyledContentError>
-                        {errors.nameMother?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-                  </StyledBoxInput>
-
-                  <StyledBoxInput>
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Tên Thánh của cha"
-                        type="text"
-                        id="saintNameFather"
-                        {...register("saintNameFather", {
-                          required: {
-                            value: true,
-                            message: "Please enter a saint name father.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.saintNameFather?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Họ tên cha"
-                        type="text"
-                        id="nameFather"
-                        {...register("nameFather", {
-                          required: {
-                            value: true,
-                            message: "Please enter a  name father.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.nameFather?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-                  </StyledBoxInput>
-
-                  <StyledBoxInputTel>
-                    <label htmlFor="phoneFather">Sđt Cha *</label>
-                    <Controller
-                      name="phoneFather"
-                      control={control}
-                      rules={{
-                        required: true,
-                      }}
-                      render={({ field, fieldState }) => (
-                        <StyleInputNumberPhone
-                          {...field}
-                          defaultCountry={"VN"}
-                          helperText={
-                            fieldState.invalid ? "Tel is invalid" : ""
-                          }
-                          error={fieldState.invalid}
-                        />
-                      )}
-                    />
-                  </StyledBoxInputTel>
-
-                  <StyledBoxInput>
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Tên Thánh của mẹ"
-                        type="text"
-                        id="saintNameMother"
-                        {...register("saintNameMother", {
-                          required: {
-                            value: true,
-                            message: "Please enter a saint name mother.",
-                          },
-                        })}
-                      />
-                      <StyledContentError>
-                        {errors.saintNameMother?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-
-                    <StyledBoxDes>
-                      <StyledTextField
-                        required
-                        label="Họ tên mẹ"
-                        type="text"
-                        id="nameMother"
-                        {...register("nameMother", {
-                          required: {
-                            value: true,
-                            message: "Please enter a name mother.",
-                          },
-                        })}
-                      />
-
-                      <StyledContentError>
-                        {errors.nameMother?.message}
-                      </StyledContentError>
-                    </StyledBoxDes>
-                  </StyledBoxInput>
-
-                  <StyledBoxInputTel>
-                    <label htmlFor="phoneMother">Sđt Mẹ *</label>
-                    <Controller
-                      name="phoneMother"
-                      control={control}
-                      rules={{
-                        required: true,
-                      }}
-                      render={({ field, fieldState }) => (
-                        <StyleInputNumberPhone
-                          {...field}
-                          defaultCountry={"VN"}
-                          helperText={
-                            fieldState.invalid ? "Tel is invalid" : ""
-                          }
-                          error={fieldState.invalid}
-                        />
-                      )}
-                    />
-                  </StyledBoxInputTel>
-
-                  <StyledBoxDes>
-                    <TextField
-                      required
-                      label="Ghi chú"
-                      fullWidth
-                      rows={4}
-                      type="text"
-                      id="note"
-                      {...register("note", {
-                        required: {
-                          value: true,
-                          message: "Please enter a note.",
-                        },
-                      })}
-                    />
-
-                    <StyledContentError>
-                      {errors.nameMother?.message}
-                    </StyledContentError>
-                  </StyledBoxDes>
-
-                  <StyledBoxButtonForm>
-                    <StyledBtnCreate type="submit">
-                      Save Changes
-                    </StyledBtnCreate>
-                  </StyledBoxButtonForm>
-                </StyledFormControl>
-              </StyledForm>
-            </StyledBoxFormDetail> */}
           </StyledBoxInfoContainer>
         )}
       </StyledContainer>

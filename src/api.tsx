@@ -1,9 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
 
-axios.defaults.baseURL = "http://localhost:3000";
+// axios.defaults.baseURL = "http://localhost:3000";
 
-import { Students, UseStudents } from "@/hooks/types";
-import { cache } from "react";
+// import { Students, UseStudents } from "@/hooks/types";
+// import { cache, useContext } from "react";
+// import { students } from "./mocks/handler";
+// import { studentsListTotal } from "./contexts/AppContext";
 
 // export const getStudents = async ({
 //   signal,
@@ -24,15 +26,7 @@ import { cache } from "react";
 //   }
 
 //   const res = await axios.get(url, { signal: signal });
-//   return res.data?.studentsList;
+//   res.data = studentsListTotal;
+//   console.log("data:", res.data);
+//   return res.data;
 // };
-
-export const getStudents = cache(
-  async ({ signal }: { signal: AbortSignal | undefined }) => {
-    let url = "/admin";
-
-    const res = await axios.get(url, { signal: signal });
-    console.log("dataApi:", res.data);
-    return res.data?.students;
-  }
-);

@@ -1,6 +1,7 @@
 "use client";
 
-import { Students } from "@/hooks/types";
+import { Students, Page } from "@/hooks/types";
+import { students } from "@/mocks/handler";
 import { createContext, useState } from "react";
 
 interface IProps {
@@ -8,60 +9,124 @@ interface IProps {
 }
 
 export type AppContextType = {
-  onChoosePage: (value: string) => void;
+  onChoosePage: (value: Page) => void;
 
   titleHeader: string;
 
   imageHeader: string;
 
-  onStudentDetail: (value: Students) => void;
-  studentDetail: Students;
+  onStudentDetail: (studentId: number) => void;
+
+  studentDetail: Students | undefined;
+
+  studentsList: Students[];
+
+  onStudentsList: (data: Students[]) => void;
+
+  onRemoveStudent: (id: string) => void;
+
+  onCreateStudent: (student: Students) => void;
+
+  onStudentUpdate: (data: Students, id: string | undefined) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
 
 const AppProvider = ({ children }: IProps) => {
-  const [onPage, setOnPage] = useState("users");
+  const [onPage, setOnPage] = useState("Admin");
 
-  const onChoosePage = (value: string) => {
+  const onChoosePage = (value: Page) => {
     setOnPage(value);
   };
 
-  const [studentDetail, setStudentDetail] = useState<Students>({
-    id: "TD00230012",
-    name: "Nam",
-    lastName: "Nguyễn Đại ",
-    saintName: "Đaminh",
-    placeOfBirth: "HCM",
-    dayOfBirth: "1997-06-23",
-    image: "/images/avatar_4.jpg",
-    saintNameFather: "Đaminh",
-    nameFather: "Nguyễn Văn Hồng",
-    phoneFather: "0772757220",
-    saintNameMother: "Anna",
-    nameMother: "Nguyễn Thị Nguyệt",
-    phoneMother: "0772757335",
-    address: "778/22/22, Thong Nhat, p.15, Go Vap, TpHCM",
-    note: "Good",
-    classItem: "Ấu 3B",
-  });
+  const [studentsList, setStudentsList] = useState<Students[]>(students);
 
-  let titleHeader = "Users";
+  const [studentDetail, setStudentDetail] = useState<Students | undefined>();
 
-  let imageHeader = "./images/user.png";
+  let titleHeader = "Admin";
 
-  if (onPage === "user") {
-    titleHeader = "Users";
+  let imageHeader = "/images/users.png";
 
-    imageHeader = "./images/user.png";
-  } else if (onPage === "role") {
-    titleHeader = "Role & Permission";
+  if (onPage === "admin") {
+    titleHeader = "Amin";
 
-    imageHeader = "../images/privacy.png";
+    imageHeader = "/images/users.png";
+  } else if (onPage === "document") {
+    titleHeader = "Document";
+
+    imageHeader = "/images/users.png";
+  } else if (onPage === "blog") {
+    titleHeader = "Blog";
+
+    imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "chiencon") {
+    titleHeader = "Chiên Con";
+
+    imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "aunhi") {
+    titleHeader = "Ấu Nhi";
+
+    imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "thieunhi") {
+    titleHeader = "Thiếu Nhi";
+
+    imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "nghiasi") {
+    titleHeader = "Nghĩa sĩ";
+
+    imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "dutruong") {
+    titleHeader = "Dự Trưởng";
+
+    imageHeader = "/images/logo_dutruong.png";
   }
 
-  const onStudentDetail = (value: Students) => {
-    setStudentDetail(value);
+  const onStudentDetail = (studentId: number) => {
+    const id = String(studentId);
+    const studentItem = studentsList?.find((student) => student.id === id);
+    if (studentItem) {
+      setStudentDetail(studentItem);
+    }
+  };
+
+  const onStudentsList = (data: Students[]) => {
+    setStudentsList(data);
+  };
+
+  const onCreateStudent = (student: Students) => {
+    setStudentsList([...studentsList, student]);
+  };
+
+  const onRemoveStudent = (studentId: string) => {
+    const deleteStudent = studentsList.filter(
+      (student) => student.id !== studentId
+    );
+
+    setStudentsList(deleteStudent);
+  };
+
+  const onStudentUpdate = (student: Students, id: string | undefined) => {
+    const studentItem = studentsList.find((student) => student.id === id);
+    const studentIndex = studentsList.findIndex((student) => student.id === id);
+
+    const day = new Date();
+
+    const newStudent = {
+      ...student,
+      id: id,
+      date: [
+        day.getDate(),
+        day.toLocaleString("en-US", { month: "short" }),
+        day.toLocaleString("en-US", { year: "2-digit" }),
+      ].join(" "),
+      time: [
+        ("0" + day.getHours()).substr(-2),
+        ("0" + day.getMinutes()).substr(-2),
+      ].join(":"),
+      //address: studentItem?.address,
+    };
+
+    studentsList[studentIndex] = newStudent;
   };
 
   return (
@@ -72,6 +137,11 @@ const AppProvider = ({ children }: IProps) => {
         titleHeader,
         onStudentDetail,
         studentDetail,
+        onStudentsList,
+        studentsList: studentsList,
+        onRemoveStudent,
+        onCreateStudent,
+        onStudentUpdate,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 //import { useRemoveUser } from "@/hooks/useFetch";
 import {
   TableRow,
@@ -22,12 +22,18 @@ import {
   StyledModal,
   StyledBoxModal,
   StyledModalEdit,
-  StyledBoxModalUpdate,
+  StyledBoxButton,
+  StyledButtonCancel,
+  StyledButtonDelete,
+  StyledTableRowContainer,
+  StyledSpanPhone,
+  StyledNamePhone,
 } from "@/components/StudentItem/StudentItem.styles";
 import StudentUpdate from "../StudentUpdate/StudentUpdate";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { useRouter } from "next/navigation";
 import { Students } from "@/hooks/types";
+import { AppContext, AppContextType } from "@/contexts/AppContext";
 
 interface UserItemProps {
   address: number;
@@ -67,41 +73,47 @@ const StudentItem = (props: UserItemProps) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
   const [isDeleting, setIsDeleting] = useState(false);
+
   const [isEditing, setIsEditing] = useState(false);
+
+  const [isLoadingDeletion, setIsLoadingDeletion] = useState(false);
+
+  const { onRemoveStudent, onStudentDetail } = useContext(
+    AppContext
+  ) as AppContextType;
 
   const router = useRouter();
 
-  // const {
-  //   mutate,
-  //   isLoading: isLoadingDeletion,
-  //   isError: isErrorDeleting,
-  //   error: deleteError,
-  // } = useRemoveUser();
-
-  // remove user
-  const onRemoveUserItem = () => {
+  // remove student
+  const onRemoveStudentItem = () => {
     setIsDeleting(true);
   };
 
   const handleDelete = (id: number) => {
     const idStudent = String(id);
 
-    //mutate(idStudent);
+    onRemoveStudent(idStudent);
 
-    router.push("/admin");
+    setIsLoadingDeletion(true);
+
+    //router.push("/admin");
   };
 
   const handleStopDelete = () => {
     setIsDeleting(false);
     setIsEditing(false);
   };
+
   // view student
-  const onViewUserItem = () => {
+  const onViewStudentItem = () => {
+    onStudentDetail(id);
     router.push(`/admin/student/${id}`);
   };
+
   // edit student
-  const onEditUserItem = () => {
+  const onEditStudentItem = (studentId: number) => {
     setIsEditing(true);
+    onStudentDetail(studentId);
     // router.push(`/admin/student/${id}`);
   };
 
@@ -129,9 +141,7 @@ const StudentItem = (props: UserItemProps) => {
           aria-labelledby="modal-modal-update"
           aria-describedby="modal-modal-update"
         >
-          <StyledBoxModalUpdate>
-            <StudentUpdate />
-          </StyledBoxModalUpdate>
+          <StudentUpdate />
         </StyledModalEdit>
       )}
       {isDeleting && (
@@ -147,7 +157,7 @@ const StudentItem = (props: UserItemProps) => {
               Do you really want to delete this student {lastName}
               {name}? This action cannot be undone.
             </Typography>
-            {/* <StyledBoxButton>
+            <StyledBoxButton>
               {isLoadingDeletion && <p>Deleting, please wait...</p>}
               {!isLoadingDeletion && (
                 <>
@@ -159,12 +169,12 @@ const StudentItem = (props: UserItemProps) => {
                   </StyledButtonDelete>
                 </>
               )}
-            </StyledBoxButton> */}
+            </StyledBoxButton>
           </StyledBoxModal>
         </StyledModal>
       )}
 
-      <TableRow key={id} sx={{ borderBottom: "1px solid #E8ECEE" }}>
+      <StyledTableRowContainer key={id}>
         <TableCell>{id}</TableCell>
         <StyledTableCellName>
           <Avatar alt={`${lastName}`} src={`${image}`} />
@@ -184,30 +194,14 @@ const StudentItem = (props: UserItemProps) => {
         </StyledTableCellStatus>
         <TableCell>
           <Box>
-            <Typography sx={{ fontSize: "14px" }}>
+            <StyledNamePhone>
               Cha:
-              <span
-                style={{
-                  fontSize: "14px",
-                  //fontStyle: "italic",
-                  color: "#94999C",
-                }}
-              >
-                {phoneFather}
-              </span>
-            </Typography>
-            <Typography sx={{ fontSize: "14px" }}>
+              <StyledSpanPhone> {phoneFather}</StyledSpanPhone>
+            </StyledNamePhone>
+            <StyledNamePhone>
               Mẹ:
-              <span
-                style={{
-                  fontSize: "14px",
-                  //fontStyle: "italic",
-                  color: "#94999C",
-                }}
-              >
-                {phoneMother}
-              </span>
-            </Typography>
+              <StyledSpanPhone> {phoneMother}</StyledSpanPhone>
+            </StyledNamePhone>
           </Box>
         </TableCell>
 
@@ -227,13 +221,17 @@ const StudentItem = (props: UserItemProps) => {
             anchorEl={anchorEl}
             onClose={handleClosePopover}
             anchorOrigin={{
-              vertical: "bottom",
+              vertical: "center",
               horizontal: "left",
             }}
-            sx={{ marginRight: "200px" }}
+            transformOrigin={{
+              vertical: "center",
+              horizontal: "right",
+            }}
+            sx={{ border: "none", borderRadius: "16px" }}
           >
             <Box>
-              <Button onClick={onViewUserItem}>
+              <Button onClick={onViewStudentItem}>
                 <VisibilityIcon
                   sx={{ width: "20px", height: "20px", marginRight: "5px" }}
                 />
@@ -241,20 +239,20 @@ const StudentItem = (props: UserItemProps) => {
               </Button>
             </Box>
             <Box>
-              <Button onClick={onEditUserItem}>
+              <Button onClick={() => onEditStudentItem(id)}>
                 <StyledEditIcon />
                 Edit
               </Button>
             </Box>
             <Box>
-              <Button onClick={onRemoveUserItem}>
+              <Button onClick={onRemoveStudentItem}>
                 <StyledDeleteIcon />
                 Remove
               </Button>
             </Box>
           </Popover>
         </TableCell>
-      </TableRow>
+      </StyledTableRowContainer>
     </>
   );
 };

@@ -1,4 +1,11 @@
-import { styled, TableCell, Typography, Modal, Box } from "@mui/material";
+import {
+  styled,
+  TableCell,
+  Typography,
+  Modal,
+  Box,
+  TableRow,
+} from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
@@ -16,9 +23,23 @@ const nganhThieu = [
 const nganhNghia = ["Nghĩa 1", " Nghĩa 2", "Nghĩa 3"];
 const nganhDutruong = ["Dự trưởng 1", "Dự trưởng 2"];
 
+export const StyledTableRowContainer = styled(TableRow)(({ theme }) => ({
+  borderBottom: `1px solid ${theme.palette.primary.contrastText}`,
+  fontSize: "14px",
+}));
+
 export const StyledTableCellName = styled(TableCell)(({ theme }) => ({
   display: "flex",
   gap: theme.spacing(2),
+}));
+
+export const StyledNamePhone = styled(Typography)(() => ({
+  fontSize: "14px",
+}));
+
+export const StyledSpanPhone = styled("span")(({ theme }) => ({
+  fontSize: "14px",
+  color: theme.palette.primary.light,
 }));
 
 export const StyledTableRowContent = styled(Typography)(() => ({
@@ -118,11 +139,8 @@ export const StyledModalEdit = styled(Modal)(() => ({
   position: "fixed",
   top: "7vh",
   left: "calc(50% - 15rem)",
-}));
-
-export const StyledBoxModalUpdate = styled(Box)(() => ({
   overflow: "auto",
-  height: "1000px",
+  height: "500px",
 }));
 
 export const StyledBoxButton = styled(Box)(() => ({
@@ -131,6 +149,7 @@ export const StyledBoxButton = styled(Box)(() => ({
   alignItems: "center",
   gap: "2rem",
 }));
+
 export const StyledButtonCancel = styled(Box)(({ theme }) => ({
   font: "inherit",
   cursor: "pointer",

@@ -1,4 +1,4 @@
-import { Badge, Box, Button, Menu, styled } from "@mui/material";
+import { Badge, Box, Button, Menu, Typography, styled } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -20,12 +20,12 @@ export const StyledMenu = styled(Menu)`
 display: { xs: "block", md: "none" },
 `;
 
-export const StyledLinkMenu = styled(Link)(({ theme }) => ({
+export const StyledLinkMenu = styled(Typography)(({ theme }) => ({
   textDecoration: "none",
   color: theme.palette.primary.main,
 }));
 
-export const StyledLinkNav = styled(Link)(({ theme }) => ({
+export const StyledLinkNav = styled(Typography)(({ theme }) => ({
   textDecoration: "none",
   color: theme.palette.background.paper,
 }));

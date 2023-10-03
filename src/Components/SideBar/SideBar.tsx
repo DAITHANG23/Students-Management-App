@@ -19,6 +19,9 @@ import { Collapse } from "@mui/material";
 const SideBar = () => {
   const { onChoosePage } = useContext(AppContext) as AppContextType;
 
+  const [isChooseChienconPage, setIsChooseChienconPage] =
+    useState<boolean>(false);
+
   const [isChooseAunhiPage, setIsChooseAunhiPage] = useState<boolean>(false);
 
   const [isChooseThieunhiPage, setIsChooseThieunhiPage] =
@@ -37,7 +40,26 @@ const SideBar = () => {
     setOpen(!open);
   };
 
+  const onChooseChienconPage = () => {
+    setIsChooseChienconPage(true);
+
+    setIsChooseAunhiPage(false);
+
+    setIsChooseThieunhiPage(false);
+
+    setIsChooseNghiasiPage(false);
+
+    setIsChooseDutruongPage(false);
+
+    setOpen(true);
+
+    route.push("/admin/chiencon");
+    onChoosePage("chiencon");
+  };
+
   const onChooseAunhiPage = () => {
+    setIsChooseChienconPage(false);
+
     setIsChooseAunhiPage(true);
 
     setIsChooseThieunhiPage(false);
@@ -49,10 +71,11 @@ const SideBar = () => {
     setOpen(true);
 
     route.push("/admin/aunhi");
-    onChoosePage("user");
+    onChoosePage("aunhi");
   };
 
   const onChooseThieunhiPage = () => {
+    setIsChooseChienconPage(false);
     setIsChooseThieunhiPage(true);
 
     setIsChooseAunhiPage(false);
@@ -62,11 +85,13 @@ const SideBar = () => {
     setIsChooseDutruongPage(false);
 
     route.push("/admin/thieunhi");
-    onChoosePage("role");
+    onChoosePage("thieunhi");
   };
 
   const onChooseNghiasiPage = () => {
     setIsChooseNghiasiPage(true);
+
+    setIsChooseChienconPage(false);
 
     setIsChooseAunhiPage(false);
 
@@ -75,11 +100,13 @@ const SideBar = () => {
     setIsChooseDutruongPage(false);
 
     route.push("/admin/nghiasi");
-    //onChoosePage("role");
+    onChoosePage("nghiasi");
   };
 
   const onChooseDutruongPage = () => {
     setIsChooseDutruongPage(true);
+
+    setIsChooseChienconPage(false);
 
     setIsChooseAunhiPage(false);
 
@@ -88,7 +115,7 @@ const SideBar = () => {
     setIsChooseThieunhiPage(false);
 
     route.push("/admin/dutruong");
-    //onChoosePage("role");
+    onChoosePage("dutruong");
   };
 
   return (
@@ -103,6 +130,14 @@ const SideBar = () => {
         </StyledButton>
 
         <Collapse in={open} timeout="auto" unmountOnExit>
+          <StyledButtonUser
+            styleActive={isChooseChienconPage}
+            onClick={onChooseChienconPage}
+          >
+            <StyledDotIcon />
+            <StyledTypography>Chiên con</StyledTypography>
+            {open && <StyledDirectionIcon />}
+          </StyledButtonUser>
           <StyledButtonUser
             styleActive={isChooseAunhiPage}
             onClick={onChooseAunhiPage}

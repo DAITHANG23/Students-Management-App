@@ -13,6 +13,8 @@ import {
   StyledButton,
   StyledBoxButton,
   StyledModal,
+  StyledBoxInfo,
+  StyledTableCellClass,
 } from "@/components/TableStudentsContainer/TableStudentsContainer.styles";
 
 import { useSortingTable } from "@/hooks/useSorting";
@@ -20,7 +22,7 @@ import { usePaging } from "@/hooks/usePagination";
 
 import NewStudent from "@/components/NewStudent/NewStudent";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
-import { useStudents } from "@/hooks/useFetch";
+
 import { Students, Class } from "@/hooks/types";
 import { useRouter } from "next/navigation";
 import StudentItem from "@/components/StudentItem/StudentItem";
@@ -29,17 +31,22 @@ import { students } from "@/mocks/handler";
 import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import useQuatityStudents from "@/hooks/useQuatityStudents";
+import HeaderPage from "../HeaderPage/HeaderPage";
 
 const TableStudentsContainer = () => {
-  const [studentsList, setStudentsList] = useState<Students[]>(students);
+  //const [studentsList, setStudentsList] = useState<Students[]>([]);
 
   const [studentClass, setStudentClass] = useState<Students[]>([]);
-
-  const [dataSearch, setDataSearch] = useState<string | undefined>();
 
   const [open, setOpen] = useState(false);
 
   const router = useRouter();
+
+  const { studentsList, onStudentsList } = useContext(
+    AppContext
+  ) as AppContextType;
+
+  let studentsListSearch: Students[] = [];
 
   const [
     quatityNganhThieunhi,
@@ -127,12 +134,6 @@ const TableStudentsContainer = () => {
     if (studentsList) setStudentClass(studentsList);
   }, [studentsList]);
 
-  // useEffect(() => {
-  //   if (dataSearch) {
-  //     setUsers(dataSearch);
-  //   }
-  // }, [dataSearch]);
-
   // Paging Table
 
   const [page, rowsPerPage, handleChangePage, handleChangeRowsPerPage] =
@@ -147,21 +148,6 @@ const TableStudentsContainer = () => {
     oneOderDirection,
     valueToOrderBy,
   ] = useSortingTable();
-
-  const sort = oneOderDirection;
-
-  const { data, error, isLoading } = useStudents();
-
-  useEffect(() => {
-    if (data) {
-      setStudentsList(data);
-    }
-  }, [data]);
-
-  if (isLoading) return <>{"Loading..."} </>;
-
-  if (error instanceof Error)
-    return <>{"An error has occurred: " + error.message}</>;
 
   // Modal create student
 
@@ -181,8 +167,21 @@ const TableStudentsContainer = () => {
       return <StudentItem {...student} key={student.id} />;
     });
 
-  const onSearch = (data: string) => {
-    setDataSearch(data);
+  const onSearch = (value: string) => {
+    if (value === null) {
+      studentsListSearch = studentsList;
+    }
+
+    if (value) {
+      const filteredUsersList = studentsList?.filter((student) => {
+        const searchableText = `${student.name} ${student.classItem} ${student.id}`;
+        return searchableText.toLowerCase().includes(value.toLowerCase());
+      });
+
+      studentsListSearch = filteredUsersList;
+    }
+
+    return setStudentClass(studentsListSearch);
   };
 
   const onSelectClass = (value: Class | "") => {
@@ -199,14 +198,8 @@ const TableStudentsContainer = () => {
 
   return (
     <StyledTableContainer>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "end",
-          paddingTop: "20px",
-        }}
-      >
+      <HeaderPage />
+      <StyledBoxInfo>
         <Box>
           <ReactApexChart
             options={options}
@@ -219,16 +212,7 @@ const TableStudentsContainer = () => {
         <StyledBoxButton>
           <StyledButton onClick={onOpenModal}>Create Student</StyledButton>
         </StyledBoxButton>
-      </Box>
-
-      {/* <StyledModal
-        open={open}
-        onClose={() => router.push("/admin")}
-        aria-labelledby="parent-modal-title"
-        aria-describedby="parent-modal-description"
-      >
-        <NewStudent />
-      </StyledModal> */}
+      </StyledBoxInfo>
 
       <TableHeader onSelectClass={onSelectClass} onSearch={onSearch} />
       <Table>
@@ -241,15 +225,10 @@ const TableStudentsContainer = () => {
               <TableSortLabel>Student</TableSortLabel>
             </StyledTitleRowName>
 
-            <TableCell
-              sx={{ textAlign: "center", width: "170px" }}
-              onClick={() => createSortHandle("classItem")}
-            >
-              Class
-            </TableCell>
-            <StyledTitleRow>
-              <TableSortLabel>Phone Parent</TableSortLabel>
-            </StyledTitleRow>
+            <StyledTableCellClass onClick={() => createSortHandle("classItem")}>
+              <TableSortLabel>Class</TableSortLabel>
+            </StyledTableCellClass>
+            <StyledTitleRow>Phone Parent</StyledTitleRow>
 
             <StyledTitleRowStatus>Address</StyledTitleRowStatus>
             <StyledTitleRow>Last active</StyledTitleRow>
@@ -260,7 +239,7 @@ const TableStudentsContainer = () => {
       </Table>
       <StyledTablePagination
         rowsPerPageOptions={[5, 10, 20]}
-        count={studentClass.length}
+        count={studentClass?.length}
         rowsPerPage={rowsPerPage}
         page={page}
         onPageChange={handleChangePage}

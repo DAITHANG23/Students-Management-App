@@ -29,6 +29,18 @@ export const StyledTableContainer = styled(TableContainer)(({ theme }) => ({
   "&:last-child td, &:last-child th": { border: 0 },
 }));
 
+export const StyledBoxInfo = styled(Box)(({ theme }) => ({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "end",
+  paddingTop: theme.spacing(3),
+}));
+
+export const StyledTableCellClass = styled(TableCell)(() => ({
+  textAlign: "center",
+  width: "170px",
+}));
+
 export const StyledTableBody = styled(TableBody)(({ theme }) => ({
   backgroundColor: theme.palette.background.paper,
 }));
@@ -59,6 +71,7 @@ export const StyledTableHead = styled(TableHead)(({ theme }) => ({
     border: "none",
   },
 }));
+
 export const StyledTitleRow = styled(TableCell)(({ theme }) => ({
   fontSize: "14px",
   fontWeight: 400,
@@ -66,6 +79,7 @@ export const StyledTitleRow = styled(TableCell)(({ theme }) => ({
   border: "none",
   width: "181px",
 }));
+
 export const StyledTitleRowName = styled(TableCell)(({ theme }) => ({
   fontSize: "14px",
   fontWeight: 400,
@@ -73,6 +87,7 @@ export const StyledTitleRowName = styled(TableCell)(({ theme }) => ({
   border: "none",
   width: "300px",
 }));
+
 export const StyledTitleRowStatus = styled(TableCell)(({ theme }) => ({
   fontSize: "14px",
   fontWeight: 400,

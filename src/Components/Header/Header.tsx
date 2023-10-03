@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useContext, useState } from "react";
 import {
   AppBar,
   Box,
@@ -26,17 +26,26 @@ import {
   StyledButtonLink,
   StyledBadge,
 } from "@/components/Header/Header.styles";
+import { AppContext, AppContextType } from "@/contexts/AppContext";
+import { Page } from "@/hooks/types";
+import { useRouter } from "next/navigation";
 
 const pages = ["Admin", "Document", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function ResponsiveAppBar() {
+  const { onChoosePage } = useContext(AppContext) as AppContextType;
+
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
   const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+
+  const route = useRouter();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
+
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -47,6 +56,11 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const onChoosePageLink = (page: Page) => {
+    onChoosePage(page);
+    route.push(`/${page}`);
   };
 
   return (
@@ -104,7 +118,10 @@ function ResponsiveAppBar() {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <StyledLinkMenu href={`/${page.toLowerCase()}`}>
+                  <StyledLinkMenu
+                    // href={`/${page.toLowerCase()}`}
+                    onClick={() => onChoosePageLink(page.toLowerCase() as Page)}
+                  >
                     {page}
                   </StyledLinkMenu>
                 </MenuItem>
@@ -138,7 +155,10 @@ function ResponsiveAppBar() {
           >
             {pages.map((page) => (
               <StyledButtonLink key={page} onClick={handleCloseNavMenu}>
-                <StyledLinkNav href={`/${page.toLowerCase()}`}>
+                <StyledLinkNav
+                  // href={`/${page.toLowerCase()}`}
+                  onClick={() => onChoosePageLink(page.toLowerCase() as Page)}
+                >
                   {page}
                 </StyledLinkNav>
               </StyledButtonLink>

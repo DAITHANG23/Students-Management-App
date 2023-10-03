@@ -24,32 +24,36 @@ import { AppContext, AppContextType } from "@/contexts/AppContext";
 const StudentUpdate = () => {
   const route = useRouter();
 
-  const { studentDetail } = useContext(AppContext) as AppContextType;
-  //const [studentItem, setStudentItem] =  useState<Students>()
+  const { studentDetail, onStudentUpdate } = useContext(
+    AppContext
+  ) as AppContextType;
 
   const { register, handleSubmit, formState, control } = useForm({
     defaultValues: {
-      id: studentDetail.id,
-      saintName: studentDetail.saintName,
-      name: studentDetail.name,
-      lastName: studentDetail.lastName,
-      classItem: studentDetail.classItem,
-      saintNameFather: studentDetail.saintNameFather,
-      nameFather: studentDetail.nameFather,
-      phoneFather: studentDetail.phoneFather,
-      image: studentDetail.image,
-      saintNameMother: studentDetail.saintNameMother,
-      nameMother: studentDetail.nameMother,
-      phoneMother: studentDetail.phoneMother,
-      note: studentDetail.note,
-      placeOfBirth: studentDetail.placeOfBirth,
-      dayOfBirth: studentDetail.dayOfBirth,
+      id: studentDetail?.id,
+      saintName: studentDetail?.saintName,
+      name: studentDetail?.name,
+      lastName: studentDetail?.lastName,
+      classItem: studentDetail?.classItem,
+      saintNameFather: studentDetail?.saintNameFather,
+      nameFather: studentDetail?.nameFather,
+      phoneFather: studentDetail?.phoneFather,
+      image: studentDetail?.image,
+      saintNameMother: studentDetail?.saintNameMother,
+      nameMother: studentDetail?.nameMother,
+      phoneMother: studentDetail?.phoneMother,
+      note: studentDetail?.note,
+      placeOfBirth: studentDetail?.placeOfBirth,
+      dayOfBirth: studentDetail?.dayOfBirth,
+      address: studentDetail?.address,
     },
   });
 
   const { errors } = formState;
 
   const onFormSubmitUpdateUserHandle = handleSubmit((data) => {
+    const studentId = data.id;
+    onStudentUpdate(data, studentId);
     route.push("/admin");
   });
 
@@ -151,18 +155,18 @@ const StudentUpdate = () => {
             <StyledBoxDes>
               <StyledTextField
                 required
-                label="Avatar"
+                label="Address"
                 type="text"
-                id="avatar"
-                {...register("image", {
+                id="address"
+                {...register("address", {
                   required: {
                     value: true,
-                    message: "Please enter a avatar.",
+                    message: "Please enter a address.",
                   },
                 })}
               />
 
-              <StyledContentError>{errors.image?.message}</StyledContentError>
+              <StyledContentError>{errors.address?.message}</StyledContentError>
             </StyledBoxDes>
           </StyledBoxInput>
 
