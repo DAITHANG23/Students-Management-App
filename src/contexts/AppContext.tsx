@@ -27,7 +27,11 @@ export type AppContextType = {
 
   onCreateStudent: (student: Students) => void;
 
-  onStudentUpdate: (data: Students, id: string | undefined) => void;
+  onStudentUpdate: (
+    data: Students,
+    id: string | undefined,
+    studentImage: string
+  ) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -105,7 +109,11 @@ const AppProvider = ({ children }: IProps) => {
     setStudentsList(deleteStudent);
   };
 
-  const onStudentUpdate = (student: Students, id: string | undefined) => {
+  const onStudentUpdate = (
+    student: Students,
+    id: string | undefined,
+    studentImage: string
+  ) => {
     const studentItem = studentsList.find((student) => student.id === id);
     const studentIndex = studentsList.findIndex((student) => student.id === id);
 
@@ -113,6 +121,7 @@ const AppProvider = ({ children }: IProps) => {
 
     const newStudent = {
       ...student,
+      image: studentImage || studentItem?.image,
       id: id,
       date: [
         day.getDate(),

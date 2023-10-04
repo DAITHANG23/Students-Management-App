@@ -16,23 +16,12 @@ import {
   StyledRoleLogin,
   StyledExpandMoreIcon,
 } from "@/components/HeaderPage/HeaderPage.styles";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
 const HeaderPage = () => {
   const { imageHeader, titleHeader } = useContext(AppContext) as AppContextType;
 
-  const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
   return (
     <StyledHeaderContainer>
       <StyledUserContainer>

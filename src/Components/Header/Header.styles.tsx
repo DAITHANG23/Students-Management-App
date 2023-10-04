@@ -1,6 +1,5 @@
 import { Badge, Box, Button, Menu, Typography, styled } from "@mui/material";
 import Image from "next/image";
-import Link from "next/link";
 
 export const StyledBoxLogoDisplayMd = styled(Box)`
 display: { xs: "none", md: "flex" },

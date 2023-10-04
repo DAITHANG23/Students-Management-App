@@ -5,10 +5,8 @@ import {
   Typography,
   Button,
   Container,
-  Avatar,
   FormControl,
   TextField,
-  Input,
 } from "@mui/material";
 import { MuiTelInput } from "mui-tel-input";
 import Link from "next/link";
@@ -58,124 +56,7 @@ export const StyledLinkPageExist = styled(Typography)(({ theme }) => ({
 }));
 
 export const StyledBoxInfoContainer = styled(Box)(({ theme }) => ({
-  display: "flex",
-  gap: theme.spacing(3),
   marginTop: "40px",
-}));
-
-export const StyledBoxAvatarContainer = styled(Box)(() => ({
-  width: "31.5%",
-  height: "462px",
-  backgroundColor: "rgb(255, 255, 255)",
-  color: "rgb(33, 43, 54)",
-  transition: "boxShadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-  backgroundImage: " none",
-  overflow: "hidden",
-  position: "relative",
-  boxShadow: "rgba(145, 158, 171, 0.16) 0px 4px 8px 0px",
-  borderRadius: "16px",
-  zIndex: 0,
-  padding: "80px 24px 40px",
-  textAlign: "center",
-}));
-
-export const StyledBoxAvatar = styled(Box)(() => ({
-  textAlign: "center",
-  width: "144px",
-  height: "144px",
-  cursor: "pointer",
-  overflow: "hidden",
-  marginLeft: "25%",
-  padding: "8px",
-  border: "1px dashed rgba(145, 158, 171, 0.2)",
-  borderRadius: "50%",
-  position: "relative",
-}));
-
-export const StyledLabel = styled("label")(() => ({
-  cursor: "pointer",
-}));
-
-export const StyledInputUpdate = styled(Input)(() => ({
-  display: "none",
-}));
-
-export const StyledBoxImageContainer = styled(Box)(() => ({
-  width: "100%",
-  height: "100%",
-  overflow: "hidden",
-  borderRadius: "50%",
-  position: "relative",
-}));
-
-export const StyledImage = styled(Box)(() => ({
-  overflow: "hidden",
-  position: "relative",
-  verticalAlign: "bottom",
-  display: "inline-block",
-  width: "100%",
-  height: "100%",
-  borderRadius: "50%",
-}));
-
-export const StyledBoxIcon = styled(Box)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  gap: "8px",
-  alignItems: "center",
-  justifyContent: "center",
-  top: "0px",
-  left: "0px",
-  width: "100%",
-  height: "100%",
-  zIndex: " 9",
-  borderRadius: "50%",
-  position: "absolute",
-  color: "rgb(255, 255, 255)",
-  backgroundColor: "rgba(22, 28, 36, 0.64)",
-  transition: "opacity 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms",
-  opacity: 0,
-  "&:hover": {
-    opacity: 1,
-  },
-}));
-
-export const StyledTitleIcon = styled("span")(() => ({
-  margin: "0px",
-  lineHeight: "1.5",
-  fontSize: "0.75rem",
-  fontFamily: "Public Sans, sans-serif",
-  fontWeight: 400,
-}));
-
-export const StyledAvatar = styled(Avatar)(() => ({
-  width: "100%",
-  height: "100%",
-}));
-
-export const StyledSpanAvatar = styled("span")(({ theme }) => ({
-  margin: "24px auto 0px",
-  lineHeight: "1.5",
-  fontSize: "0.75rem",
-  fontWeight: 400,
-  color: theme.palette.primary.light,
-  display: "block",
-  textAlign: "center",
-}));
-
-export const StyledButtonDelAvatar = styled(Button)(({ theme }) => ({
-  padding: theme.spacing(0, 1),
-  border: "none",
-  borderRadius: "8px",
-  margin: "50px 0 0",
-  fontWeight: "700",
-  fontSize: "14px",
-  color: "rgb(183, 29, 24)",
-  backgroundColor: "rgba(255, 86, 48, 0.16)",
-
-  "&:hover": {
-    backgroundColor: "rgba(255,86, 48, 0.29)",
-  },
 }));
 
 export const StyledBoxFormDetail = styled(Box)(({ theme }) => ({
@@ -297,13 +178,6 @@ export const StyledBoxButton = styled(Box)(() => ({
   position: "relative",
 }));
 
-export const StyledBoxButtonDelete = styled(Box)(() => ({
-  display: "flex",
-  justifyContent: "flex-end",
-  alignItems: "center",
-  gap: "2rem",
-}));
-
 export const StyledButtonGeneral = styled(Button)<{ styleactive: boolean }>(
   ({ styleactive }) => ({
     color: "#121212",
@@ -339,30 +213,6 @@ export const StyledSpan = styled(Typography)<{ styleactive: boolean }>(
     backgroundColor: "rgb(33, 43, 54)",
   })
 );
-
-export const StyledButtonCancel = styled(Box)(({ theme }) => ({
-  font: "inherit",
-  cursor: "pointer",
-  border: "none",
-  backgroundColor: "transparent",
-  color: "#3f0c26",
-  borderRadius: "4px",
-  fontWeight: "bold",
-  textDecoration: "none",
-}));
-
-export const StyledButtonDelete = styled(Box)(({ theme }) => ({
-  font: "inherit",
-  cursor: "pointer",
-  padding: "0.5rem 1.5rem",
-  border: "none",
-  backgroundColor: theme.palette.primary.main,
-  color: theme.palette.background.paper,
-  borderRadius: "4px",
-  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.26)",
-  fontWeight: "bold",
-  textDecoration: "none",
-}));
 
 export const StyledTitleForm = styled(Typography)(({ theme }) => ({
   fontSize: "20px",

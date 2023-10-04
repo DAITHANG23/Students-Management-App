@@ -13,16 +13,6 @@ export const metadata: Metadata = {
   description: "Thông Tin Đoàn Thiếu nhi Thánh thể giáo xứ Tử Đình",
 };
 
-// if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-//   require("@/mocks");
-// }
-
-// if (process.env.NEXT_PUBLIC_API_MOCKING === "true") {
-//   import("../mocks").then(({ initMocks }) => {
-//     initMocks();
-//   });
-// }
-
 export default function RootLayout({
   children,
 }: {

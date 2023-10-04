@@ -2,90 +2,90 @@ import { Students } from "./types";
 import React from "react";
 
 interface UseQuantityStudentsProps {
-  students: Students[];
+  studentsList: Students[];
 }
 
-const useQuatityStudents = ({
-  students,
+const useQuantityStudents = ({
+  studentsList,
 }: UseQuantityStudentsProps): [number, number, number, number, number] => {
-  const quantityChiencon = students.filter(
+  const quantityChiencon = studentsList.filter(
     (student) => student.classItem === "Chiên con"
   ).length;
 
-  const quantityAu1A = students.filter(
+  const quantityAu1A = studentsList.filter(
     (student) => student.classItem === "Ấu 1A"
   ).length;
 
-  const quantityAu1B = students.filter(
+  const quantityAu1B = studentsList.filter(
     (student) => student.classItem === "Ấu 1B"
   ).length;
 
-  const quantityAu2A = students.filter(
+  const quantityAu2A = studentsList.filter(
     (student) => student.classItem === "Ấu 2A"
   ).length;
 
-  const quantityAu2B = students.filter(
+  const quantityAu2B = studentsList.filter(
     (student) => student.classItem === "Ấu 2B"
   ).length;
 
-  const quantityAu3A = students.filter(
+  const quantityAu3A = studentsList.filter(
     (student) => student.classItem === "Ấu 3A"
   ).length;
 
-  const quantityAu3B = students.filter(
+  const quantityAu3B = studentsList.filter(
     (student) => student.classItem === "Ấu 3B"
   ).length;
 
-  const quantityThieu1Nam = students.filter(
+  const quantityThieu1Nam = studentsList.filter(
     (student) => student.classItem === "Thiếu 1 Nam"
   ).length;
 
-  const quantityThieu1Nu = students.filter(
+  const quantityThieu1Nu = studentsList.filter(
     (student) => student.classItem === "Thiếu 1 Nữ"
   ).length;
 
-  const quantityThieu2Nam = students.filter(
+  const quantityThieu2Nam = studentsList.filter(
     (student) => student.classItem === "Thiếu 2 Nam"
   ).length;
 
-  const quantityThieu2Nu = students.filter(
+  const quantityThieu2Nu = studentsList.filter(
     (student) => student.classItem === "Thiếu 2 Nữ"
   ).length;
 
-  const quantityThieu3Nam = students.filter(
+  const quantityThieu3Nam = studentsList.filter(
     (student) => student.classItem === "Thiếu 3 Nam"
   ).length;
 
-  const quantityThieu3Nữ = students.filter(
+  const quantityThieu3Nữ = studentsList.filter(
     (student) => student.classItem === "Thiếu 3 Nữ"
   ).length;
 
-  const quantityNghia1 = students.filter(
+  const quantityNghia1 = studentsList.filter(
     (student) => student.classItem === "Nghĩa 1"
   ).length;
 
-  const quantityNghia2 = students.filter(
+  const quantityNghia2 = studentsList.filter(
     (student) => student.classItem === "Nghĩa 2"
   ).length;
 
-  const quantityNghia3 = students.filter(
+  const quantityNghia3 = studentsList.filter(
     (student) => student.classItem === "Nghĩa 3"
   ).length;
 
-  const quantityDutruong1 = students.filter(
+  const quantityDutruong1 = studentsList.filter(
     (student) => student.classItem === "Dự trưởng 1"
   ).length;
 
-  const quantityDutruong2 = students.filter(
+  const quantityDutruong2 = studentsList.filter(
     (student) => student.classItem === "Dự trưởng 2"
   ).length;
 
-  const quatityNganhChiencon = quantityChiencon + quantityAu1A + quantityAu1B;
+  const quantityNganhChiencon = quantityChiencon + quantityAu1A + quantityAu1B;
 
-  const quatityNganhAunhi =
+  const quantityNganhAunhi =
     quantityAu2A + quantityAu2B + quantityAu3A + quantityAu3B;
 
-  const quatityNganhThieunhi =
+  const quantityNganhThieunhi =
     quantityThieu1Nam +
     quantityThieu1Nu +
     quantityThieu2Nam +
@@ -93,17 +93,17 @@ const useQuatityStudents = ({
     quantityThieu3Nam +
     quantityThieu3Nữ;
 
-  const quatityNganhNghia = quantityNghia1 + quantityNghia2 + quantityNghia3;
+  const quantityNganhNghia = quantityNghia1 + quantityNghia2 + quantityNghia3;
 
-  const quatityNganhDutruong = quantityDutruong1 + quantityDutruong2;
+  const quantityNganhDutruong = quantityDutruong1 + quantityDutruong2;
 
   return [
-    quatityNganhChiencon,
-    quatityNganhAunhi,
-    quatityNganhThieunhi,
-    quatityNganhNghia,
-    quatityNganhDutruong,
+    quantityNganhChiencon,
+    quantityNganhAunhi,
+    quantityNganhThieunhi,
+    quantityNganhNghia,
+    quantityNganhDutruong,
   ];
 };
 
-export default useQuatityStudents;
+export default useQuantityStudents;

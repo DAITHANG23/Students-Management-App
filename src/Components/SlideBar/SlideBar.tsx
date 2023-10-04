@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import Image from "next/image";
+
 import { StyledImage } from "./SlideBar.styles";
 
 export default function SlideBar() {

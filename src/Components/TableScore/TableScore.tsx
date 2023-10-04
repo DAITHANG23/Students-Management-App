@@ -1,13 +1,7 @@
 import React, { useContext, useState } from "react";
 import {
   StyledTableHead,
-  StyledTitleRowName,
-  StyledTableCellClass,
-  StyledTitleRow,
-  StyledTitleRowStatus,
   StyledTableBody,
-  StyledTableRowContainer,
-  StyledTableCellName,
   StyledButtonEdit,
   StyleIcon,
   StyledEditIcon,
@@ -16,20 +10,17 @@ import {
 import {
   Table,
   TableRow,
-  TableSortLabel,
   TableCell,
   Typography,
   Box,
   Popover,
   Button,
-  Avatar,
   TableHead,
   TableBody,
   TableContainer,
 } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+
 import { AppContext, AppContextType } from "@/contexts/AppContext";
-import TableHeader from "../TableHeader/TableHeader";
 
 const TableScore = () => {
   const { studentDetail } = useContext(AppContext) as AppContextType;

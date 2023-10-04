@@ -5,10 +5,12 @@ import {
   Modal,
   Box,
   TableRow,
+  Popover,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 
 const nganhChiencon = ["Chiên con", "Ấu 1A", "Ấu 1B"];
 const nganhAu = ["Ấu 2A", "Ấu 2B", "Ấu 3A", "Ấu 3B"];
@@ -137,8 +139,8 @@ export const StyledBoxModal = styled(Box)(() => ({
 
 export const StyledModalEdit = styled(Modal)(() => ({
   position: "fixed",
-  top: "7vh",
-  left: "calc(50% - 15rem)",
+  top: "8vh",
+  left: "10%",
   overflow: "auto",
   height: "500px",
 }));
@@ -178,4 +180,15 @@ export const StyledTitleForm = styled(Typography)(({ theme }) => ({
   fontSize: "20px",
   fontWeight: "700",
   paddingBottom: theme.spacing(3),
+}));
+
+export const StyledPopover = styled(Popover)(({ theme }) => ({
+  border: "none",
+  borderRadius: theme.spacing(2),
+}));
+
+export const StyledVisibilityIcon = styled(VisibilityIcon)(() => ({
+  width: "20px",
+  height: "20px",
+  marginRight: "5px",
 }));

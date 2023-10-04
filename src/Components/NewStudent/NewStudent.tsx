@@ -1,12 +1,6 @@
 "use client";
-import { useState, useEffect, useContext } from "react";
-import {
-  Box,
-  Container,
-  FormControl,
-  FormControlLabel,
-  Radio,
-} from "@mui/material";
+import { useState, useContext } from "react";
+import { Box, Container, FormControl } from "@mui/material";
 import {
   StyledModalHeaderContainer,
   StyledBoxHeader,
@@ -42,17 +36,15 @@ import { Icon } from "@iconify/react";
 import { useForm, Controller } from "react-hook-form";
 import { BsDot } from "react-icons/bs";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
-import { Students } from "@/hooks/types";
+
 import { useRouter } from "next/navigation";
 
 const NewStudent = () => {
   const route = useRouter();
 
-  const [valueImage, setValueImage] = useState<any>();
+  const [selectedImage, setSelectedImage] = useState("");
 
-  //console.log("image:", valueImage);
-
-  const [imageItem, setImageItem] = useState<string>("");
+  const [selectedFile, setSelectedFile] = useState<File>();
 
   const { onCreateStudent } = useContext(AppContext) as AppContextType;
 
@@ -78,21 +70,30 @@ const NewStudent = () => {
   });
   const { errors } = formState;
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValueImage(e.target.value);
-  };
-
   const handleClose = () => {
     route.push("/admin");
   };
 
-  const onFormSubmitCreateUserHandle = handleSubmit((studentItem) => {
+  const onFormSubmitCreateUserHandle = handleSubmit(async (studentItem) => {
+    // try {
+    //   if (!selectedFile) return;
+    //   const dataImage = new FormData();
+    //   dataImage.append("file", selectedFile);
+
+    //   const { data } = await axios.post("/api/upload", dataImage);
+    //   console.log(data);
+    //   // handle the error
+    // } catch (error: any) {
+    //   // Handle errors here
+    //   console.log(error.response?.data);
+    // }
+
     const day = new Date();
-    console.log("image:", studentItem.image);
 
     const newStudent = {
       ...studentItem,
 
+      image: selectedImage,
       date: [
         day.getDate(),
 
@@ -129,15 +130,18 @@ const NewStudent = () => {
             <StyledBoxAvatar>
               <StyledLabel>
                 <StyledInputUpdate
-                  type="file"
+                  // type="file"
                   id="image"
-                  {...register("image", {
-                    required: {
-                      value: true,
-                      message: "Please enter a image.",
-                    },
-                  })}
-                  // onChange={onChange}
+                  {...register("image")}
+                  type="file"
+                  name="file"
+                  onChange={({ target }) => {
+                    if (target.files) {
+                      const file = target.files[0];
+                      setSelectedImage(URL.createObjectURL(file));
+                      setSelectedFile(file);
+                    }
+                  }}
                 />
 
                 <StyledContentError>
@@ -145,7 +149,7 @@ const NewStudent = () => {
                 </StyledContentError>
                 <StyledBoxImageContainer>
                   <StyledImage>
-                    <StyledAvatar src={""} />
+                    <StyledAvatar src={selectedImage} />
                   </StyledImage>
 
                   <StyledBoxIcon>

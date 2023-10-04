@@ -14,7 +14,7 @@ import {
   StyledLinkGroup,
   StyledBoxFooterSecond,
   StyledBoxLinkContact,
-} from "./Footer.styles";
+} from "@/components/Footer/Footer.styles";
 
 const Footer = () => {
   return (

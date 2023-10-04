@@ -6,7 +6,6 @@ export const StyledSideBar = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
   width: "18%",
   height: "1800px",
-  // paddingTop: "100px",
 }));
 
 export const StyledImage = styled("img")(({ theme }) => ({

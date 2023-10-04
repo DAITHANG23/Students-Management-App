@@ -1,7 +1,7 @@
 "use client";
 import { useContext, useEffect, useState } from "react";
 import { Table, TableRow, TableSortLabel, TableCell, Box } from "@mui/material";
-import ApexCharts from "apexcharts";
+
 import {
   StyledTitleRow,
   StyledTableBody,
@@ -16,26 +16,22 @@ import {
   StyledBoxInfo,
   StyledTableCellClass,
 } from "@/components/TableStudentsContainer/TableStudentsContainer.styles";
-
+import { ApexOptions } from "apexcharts";
+import ReactApexChart from "react-apexcharts";
 import { useSortingTable } from "@/hooks/useSorting";
 import { usePaging } from "@/hooks/usePagination";
 
-import NewStudent from "@/components/NewStudent/NewStudent";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
 import { Students, Class } from "@/hooks/types";
 import { useRouter } from "next/navigation";
 import StudentItem from "@/components/StudentItem/StudentItem";
-import TableHeader from "../TableHeader/TableHeader";
-import { students } from "@/mocks/handler";
-import { ApexOptions } from "apexcharts";
-import ReactApexChart from "react-apexcharts";
-import useQuatityStudents from "@/hooks/useQuatityStudents";
-import HeaderPage from "../HeaderPage/HeaderPage";
+import TableHeader from "@/components/TableHeader/TableHeader";
+
+import useQuantityStudents from "@/hooks/useQuantityStudents";
+import HeaderPage from "@/components/HeaderPage/HeaderPage";
 
 const TableStudentsContainer = () => {
-  //const [studentsList, setStudentsList] = useState<Students[]>([]);
-
   const [studentClass, setStudentClass] = useState<Students[]>([]);
 
   const [open, setOpen] = useState(false);
@@ -49,19 +45,19 @@ const TableStudentsContainer = () => {
   let studentsListSearch: Students[] = [];
 
   const [
-    quatityNganhThieunhi,
-    quatityNganhAunhi,
-    quatityNganhNghia,
-    quatityNganhChiencon,
-    quatityNganhDutruong,
-  ] = useQuatityStudents({ students });
+    quantityNganhChiencon,
+    quantityNganhAunhi,
+    quantityNganhThieunhi,
+    quantityNganhNghia,
+    quantityNganhDutruong,
+  ] = useQuantityStudents({ studentsList });
 
   const series = [
-    quatityNganhAunhi,
-    quatityNganhThieunhi,
-    quatityNganhNghia,
-    quatityNganhChiencon,
-    quatityNganhDutruong,
+    quantityNganhChiencon,
+    quantityNganhAunhi,
+    quantityNganhThieunhi,
+    quantityNganhNghia,
+    quantityNganhDutruong,
   ];
 
   const options: ApexOptions = {
@@ -69,13 +65,15 @@ const TableStudentsContainer = () => {
       width: 300,
       type: "donut",
     },
+
     labels: [
+      "Ngành Chiên con",
       "Ngành Ấu",
       "Ngành Thiếu",
       "Ngành Nghĩa",
-      "Ngành Chiên con",
       "Ngành Dự trưởng",
     ],
+
     plotOptions: {
       pie: {
         startAngle: -90,
@@ -97,6 +95,12 @@ const TableStudentsContainer = () => {
         },
       },
     },
+    colors: ["#FF6699", "#22C55E", "#00B8D9", "#FFAB00", "#FF3333"],
+
+    tooltip: {
+      fillSeriesColor: false,
+      theme: "",
+    },
 
     dataLabels: {
       enabled: true,
@@ -104,16 +108,13 @@ const TableStudentsContainer = () => {
     },
     fill: {
       type: "gradient",
-      colors: ["#22C55E", "#00B8D9", "#FFAB00", "#FF6699", "#FF3333"],
+      colors: ["#FF6699", "#22C55E", "#00B8D9", "#FFAB00", "#FF3333"],
     },
     legend: {
       markers: {
-        fillColors: ["#22C55E", "#00B8D9", "#FFAB00", "#FF6699", "#FF3333"],
+        fillColors: ["#FF6699", "#22C55E", "#00B8D9", "#FFAB00", "#FF3333"],
       },
     },
-    // title: {
-    //   text: "Thống kê số lượng thiếu nhi",
-    // },
 
     responsive: [
       {
@@ -131,7 +132,9 @@ const TableStudentsContainer = () => {
   };
 
   useEffect(() => {
-    if (studentsList) setStudentClass(studentsList);
+    if (studentsList) {
+      setStudentClass(studentsList);
+    }
   }, [studentsList]);
 
   // Paging Table
@@ -156,16 +159,6 @@ const TableStudentsContainer = () => {
 
     router.push("/admin/newstudent");
   };
-
-  const TableListUsers = sortedTableRow(
-    studentClass,
-
-    getComparator(oneOderDirection, valueToOrderBy)
-  )
-    ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    .map((student) => {
-      return <StudentItem {...student} key={student.id} />;
-    });
 
   const onSearch = (value: string) => {
     if (value === null) {
@@ -195,6 +188,16 @@ const TableStudentsContainer = () => {
       setStudentClass(studentsList);
     }
   };
+
+  const TableListUsers = sortedTableRow(
+    studentClass,
+
+    getComparator(oneOderDirection, valueToOrderBy)
+  )
+    ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    .map((student) => {
+      return <StudentItem {...student} key={student.id} />;
+    });
 
   return (
     <StyledTableContainer>

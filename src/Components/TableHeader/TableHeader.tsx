@@ -10,7 +10,7 @@ import {
   StyledIconGlassBold,
 } from "@/components/TableHeader/TableHeader.styles";
 import { useSearching } from "@/hooks/useSearch";
-import { Class, Students } from "@/hooks/types";
+import { Class } from "@/hooks/types";
 
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 

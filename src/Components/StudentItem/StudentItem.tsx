@@ -1,14 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 //import { useRemoveUser } from "@/hooks/useFetch";
-import {
-  TableRow,
-  Box,
-  TableCell,
-  Button,
-  Popover,
-  Typography,
-  Avatar,
-} from "@mui/material";
+import { Box, TableCell, Button, Typography, Avatar } from "@mui/material";
 import {
   StyledTableCellName,
   StyledTableRowContent,
@@ -28,27 +20,24 @@ import {
   StyledTableRowContainer,
   StyledSpanPhone,
   StyledNamePhone,
+  StyledPopover,
+  StyledVisibilityIcon,
 } from "@/components/StudentItem/StudentItem.styles";
-import StudentUpdate from "../StudentUpdate/StudentUpdate";
-import VisibilityIcon from "@mui/icons-material/Visibility";
+import StudentUpdate from "@/components/StudentUpdate/StudentUpdate";
+
 import { useRouter } from "next/navigation";
-import { Students } from "@/hooks/types";
+
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
 interface UserItemProps {
   address: number;
   id: number;
   name: number;
-  note: number;
   lastName: number;
   saintName: number;
   placeOfBirth: number;
   dayOfBirth: number;
-  saintNameFather: number;
-  nameFather: number;
   phoneFather: number;
-  saintNameMother: number;
-  nameMother: number;
   phoneMother: number;
   classItem: number;
   date: number;
@@ -101,18 +90,21 @@ const StudentItem = (props: UserItemProps) => {
 
   const handleStopDelete = () => {
     setIsDeleting(false);
+
     setIsEditing(false);
   };
 
   // view student
-  const onViewStudentItem = () => {
+  const onViewStudentItem = (id: number) => {
     onStudentDetail(id);
+
     router.push(`/admin/student/${id}`);
   };
 
   // edit student
   const onEditStudentItem = (studentId: number) => {
     setIsEditing(true);
+
     onStudentDetail(studentId);
     // router.push(`/admin/student/${id}`);
   };
@@ -141,7 +133,7 @@ const StudentItem = (props: UserItemProps) => {
           aria-labelledby="modal-modal-update"
           aria-describedby="modal-modal-update"
         >
-          <StudentUpdate />
+          <StudentUpdate id={String(id)} />
         </StyledModalEdit>
       )}
       {isDeleting && (
@@ -215,7 +207,7 @@ const StudentItem = (props: UserItemProps) => {
           <StyledButtonEdit onClick={handleClick}>
             <StyleIcon />
           </StyledButtonEdit>
-          <Popover
+          <StyledPopover
             id={idPopItem}
             open={openPop}
             anchorEl={anchorEl}
@@ -228,13 +220,10 @@ const StudentItem = (props: UserItemProps) => {
               vertical: "center",
               horizontal: "right",
             }}
-            sx={{ border: "none", borderRadius: "16px" }}
           >
             <Box>
-              <Button onClick={onViewStudentItem}>
-                <VisibilityIcon
-                  sx={{ width: "20px", height: "20px", marginRight: "5px" }}
-                />
+              <Button onClick={() => onViewStudentItem(id)}>
+                <StyledVisibilityIcon />
                 View
               </Button>
             </Box>
@@ -250,7 +239,7 @@ const StudentItem = (props: UserItemProps) => {
                 Remove
               </Button>
             </Box>
-          </Popover>
+          </StyledPopover>
         </TableCell>
       </StyledTableRowContainer>
     </>
