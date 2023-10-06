@@ -69,7 +69,7 @@ const TableHeader = ({ onSelectClass, onSearch }: TableHeaderProps) => {
           <MenuItem value={"Thiếu 3 Nam"}>Thiếu 3 Nam</MenuItem>
           <MenuItem value={"Thiếu 3 Nữ"}>Thiếu 3 Nữ</MenuItem>
           <MenuItem value={"Nghĩa 1"}>Nghĩa 1</MenuItem>
-          <MenuItem value={"Nghỉa 2"}>Nghĩa 2</MenuItem>
+          <MenuItem value={"Nghĩa 2"}>Nghĩa 2</MenuItem>
           <MenuItem value={"Nghĩa 3"}>Nghĩa 3</MenuItem>
           <MenuItem value={"Dự trưởng 1"}>Dự trưởng 1</MenuItem>
           <MenuItem value={"Dự trưởng 2"}>Dự trưởng 2</MenuItem>

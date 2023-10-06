@@ -37,6 +37,7 @@ import { useRouter } from "next/navigation";
 import { Box, TextField, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
+import { VariantType, useSnackbar } from "notistack";
 
 interface StudentUpdateProps {
   id: string;
@@ -52,6 +53,8 @@ const StudentUpdate = ({ id }: StudentUpdateProps) => {
   const [isLoadingDeletion, setIsLoadingDeletion] = useState(false);
 
   const [isDeleting, setIsDeleting] = useState(false);
+
+  const { enqueueSnackbar } = useSnackbar();
 
   const { studentDetail, onStudentUpdate, onRemoveStudent } = useContext(
     AppContext
@@ -80,8 +83,6 @@ const StudentUpdate = ({ id }: StudentUpdateProps) => {
 
   const { errors } = formState;
 
-  useEffect(() => {}, [selectedImage, studentDetail]);
-
   const onFormSubmitUpdateUserHandle = handleSubmit((data) => {
     const studentId = data.id;
 
@@ -108,6 +109,15 @@ const StudentUpdate = ({ id }: StudentUpdateProps) => {
     setIsDeleting(false);
   };
 
+  const handleClick = (variant: VariantType) => {
+    enqueueSnackbar("Tạo mới thành công!", {
+      variant,
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
   return (
     <Box>
       {isDeleting && (
@@ -482,7 +492,12 @@ const StudentUpdate = ({ id }: StudentUpdateProps) => {
               </StyledBoxDes>
 
               <StyledBoxButtonForm>
-                <StyledBtnCreate type="submit">Save Changes</StyledBtnCreate>
+                <StyledBtnCreate
+                  type="submit"
+                  onClick={() => handleClick("success")}
+                >
+                  Save Changes
+                </StyledBtnCreate>
               </StyledBoxButtonForm>
             </StyledFormControl>
           </StyledBoxFormDetail>

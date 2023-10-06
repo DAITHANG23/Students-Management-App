@@ -1,6 +1,6 @@
 import HeaderPage from "@/components/HeaderPage/HeaderPage";
 import SideBar from "@/components/SideBar/SideBar";
-import TableScoreForm from "@/components/TableScoreForm/TableScoreForm";
+import TableClass from "@/components/TableClass/TableClass";
 import { Box } from "@mui/material";
 import React from "react";
 
@@ -10,7 +10,7 @@ const AuNhi = () => {
       <SideBar />
       <Box sx={{ width: "81%" }}>
         <HeaderPage />
-        <TableScoreForm />
+        <TableClass />
       </Box>
     </Box>
   );

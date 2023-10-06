@@ -22,7 +22,7 @@ const nganhThieu = [
   "Thiếu 3 Nam",
   "Thiếu 3 Nữ",
 ];
-const nganhNghia = ["Nghĩa 1", " Nghĩa 2", "Nghĩa 3"];
+const nganhNghia = ["Nghĩa 1", "Nghĩa 2", "Nghĩa 3"];
 const nganhDutruong = ["Dự trưởng 1", "Dự trưởng 2"];
 
 export const StyledTableRowContainer = styled(TableRow)(({ theme }) => ({
@@ -78,7 +78,9 @@ export const StyledTitleStatus = styled(Typography)<{ styleActive: string }>(
           styleActive === nganhThieu[4] ||
           styleActive === nganhThieu[5]
         ? "#0d47a1"
-        : styleActive === nganhNghia[0] || styleActive === nganhNghia[1]
+        : styleActive === nganhNghia[0] ||
+          styleActive === nganhNghia[1] ||
+          styleActive === nganhNghia[2]
         ? "#ffeb3b"
         : styleActive === nganhDutruong[0] || styleActive === nganhDutruong[1]
         ? "#d50000"

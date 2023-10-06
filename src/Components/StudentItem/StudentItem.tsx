@@ -28,6 +28,7 @@ import StudentUpdate from "@/components/StudentUpdate/StudentUpdate";
 import { useRouter } from "next/navigation";
 
 import { AppContext, AppContextType } from "@/contexts/AppContext";
+import { VariantType, useSnackbar } from "notistack";
 
 interface UserItemProps {
   address: number;
@@ -67,6 +68,8 @@ const StudentItem = (props: UserItemProps) => {
 
   const [isLoadingDeletion, setIsLoadingDeletion] = useState(false);
 
+  const { enqueueSnackbar } = useSnackbar();
+
   const { onRemoveStudent, onStudentDetail } = useContext(
     AppContext
   ) as AppContextType;
@@ -78,12 +81,20 @@ const StudentItem = (props: UserItemProps) => {
     setIsDeleting(true);
   };
 
-  const handleDelete = (id: number) => {
+  const handleDelete = (id: number, variant: VariantType) => {
     const idStudent = String(id);
 
     onRemoveStudent(idStudent);
 
     setIsLoadingDeletion(true);
+
+    enqueueSnackbar("Xóa thành công!", {
+      variant,
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
 
     //router.push("/admin");
   };
@@ -156,7 +167,9 @@ const StudentItem = (props: UserItemProps) => {
                   <StyledButtonCancel onClick={handleStopDelete}>
                     Cancel
                   </StyledButtonCancel>
-                  <StyledButtonDelete onClick={() => handleDelete(id)}>
+                  <StyledButtonDelete
+                    onClick={() => handleDelete(id, "success")}
+                  >
                     Delete
                   </StyledButtonDelete>
                 </>

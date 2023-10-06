@@ -38,6 +38,7 @@ import { BsDot } from "react-icons/bs";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
 import { useRouter } from "next/navigation";
+import { VariantType, useSnackbar } from "notistack";
 
 const NewStudent = () => {
   const route = useRouter();
@@ -47,6 +48,18 @@ const NewStudent = () => {
   const [selectedFile, setSelectedFile] = useState<File>();
 
   const { onCreateStudent } = useContext(AppContext) as AppContextType;
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClick = (variant: VariantType) => {
+    enqueueSnackbar("Tạo mới thành công!", {
+      variant,
+      anchorOrigin: {
+        vertical: "top",
+        horizontal: "right",
+      },
+    });
+  };
 
   const { register, handleSubmit, formState, reset, control } = useForm({
     defaultValues: {
@@ -507,7 +520,12 @@ const NewStudent = () => {
                   <StyledBtnCancel onClick={handleClose}>
                     CANCEL
                   </StyledBtnCancel>
-                  <StyledBtnCreate type="submit">CREATE</StyledBtnCreate>
+                  <StyledBtnCreate
+                    type="submit"
+                    onClick={() => handleClick("success")}
+                  >
+                    CREATE
+                  </StyledBtnCreate>
                 </StyledBoxButtonModal>
               </FormControl>
             </StyledBoxFormInfo>

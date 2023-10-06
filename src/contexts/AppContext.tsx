@@ -32,6 +32,23 @@ export type AppContextType = {
     id: string | undefined,
     studentImage: string
   ) => void;
+
+  onScoreStudent: (
+    id: string | undefined,
+    score15pHk1: number,
+    score1TietpHk1: number,
+    scoreExamHk1: number,
+    averageHk1: number,
+    score15pHk2: number,
+    score1TietpHk2: number,
+    scoreExamHk2: number,
+    averageHk2: number,
+    scoreAverageTotal: number,
+    classification: string,
+    resultTotal: string,
+    noteResult: string,
+    ranking: number | undefined
+  ) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -62,23 +79,23 @@ const AppProvider = ({ children }: IProps) => {
   } else if (onPage === "blog") {
     titleHeader = "Blog";
 
-    imageHeader = "/images/logo_dutruong.png";
+    imageHeader = "/images/users.png";
   } else if (onPage === "chiencon") {
     titleHeader = "Chiên Con";
 
-    imageHeader = "/images/logo_dutruong.png";
+    imageHeader = "/images/logo_chiencon.png";
   } else if (onPage === "aunhi") {
     titleHeader = "Ấu Nhi";
 
-    imageHeader = "/images/logo_dutruong.png";
+    imageHeader = "/images/logo_aunhi.png";
   } else if (onPage === "thieunhi") {
     titleHeader = "Thiếu Nhi";
 
-    imageHeader = "/images/logo_dutruong.png";
+    imageHeader = "/images/logo_thieu.png";
   } else if (onPage === "nghiasi") {
     titleHeader = "Nghĩa sĩ";
 
-    imageHeader = "/images/logo_dutruong.png";
+    imageHeader = "/images/logo_nghia.png";
   } else if (onPage === "dutruong") {
     titleHeader = "Dự Trưởng";
 
@@ -115,12 +132,14 @@ const AppProvider = ({ children }: IProps) => {
     studentImage: string
   ) => {
     const studentItem = studentsList.find((student) => student.id === id);
+
     const studentIndex = studentsList.findIndex((student) => student.id === id);
 
     const day = new Date();
 
     const newStudent = {
       ...student,
+
       image: studentImage || studentItem?.image,
       id: id,
       date: [
@@ -132,10 +151,55 @@ const AppProvider = ({ children }: IProps) => {
         ("0" + day.getHours()).substr(-2),
         ("0" + day.getMinutes()).substr(-2),
       ].join(":"),
-      //address: studentItem?.address,
     };
 
     studentsList[studentIndex] = newStudent;
+  };
+
+  const onScoreStudent = (
+    id: string | undefined,
+    score15pHk1: number,
+    score1TietpHk1: number,
+    scoreExamHk1: number,
+    averageHk1: number,
+    score15pHk2: number,
+    score1TietpHk2: number,
+    scoreExamHk2: number,
+    averageHk2: number,
+    scoreAverageTotal: number,
+    classification: string,
+    resultTotal: string,
+    noteResult: string,
+    ranking: number | undefined
+  ) => {
+    const studentIndex = studentsList.findIndex((student) => student.id === id);
+
+    const nextStudentList = [...studentsList];
+
+    nextStudentList[studentIndex] = {
+      ...nextStudentList[studentIndex],
+      score: {
+        hk1: {
+          test15p: score15pHk1,
+          test1Tiet: score1TietpHk1,
+          exam: scoreExamHk1,
+          averageScore: averageHk1,
+        },
+        hk2: {
+          test15p: score15pHk2,
+          test1Tiet: score1TietpHk2,
+          exam: scoreExamHk2,
+          averageScore: averageHk2,
+        },
+        averageScoreTotal: scoreAverageTotal,
+        classification: classification,
+        result: resultTotal,
+        noteResult: noteResult,
+        rank: ranking,
+      },
+    };
+
+    setStudentsList(nextStudentList);
   };
 
   return (
@@ -151,6 +215,7 @@ const AppProvider = ({ children }: IProps) => {
         onRemoveStudent,
         onCreateStudent,
         onStudentUpdate,
+        onScoreStudent,
       }}
     >
       {children}

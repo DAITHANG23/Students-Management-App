@@ -39,8 +39,6 @@ const TableScore = () => {
 
   const idPopItem = openPop ? "simple-popover" : undefined;
 
-  const onEditStudentItem = () => {};
-
   return (
     <TableContainer
       sx={{
@@ -101,7 +99,7 @@ const TableScore = () => {
             >
               Tổng kết
             </TableCell>
-            <TableCell sx={{ border: "none", width: "32px" }}></TableCell>
+            {/* <TableCell sx={{ border: "none", width: "32px" }}></TableCell> */}
           </TableRow>
 
           <TableRow>
@@ -114,45 +112,45 @@ const TableScore = () => {
             <StyledTableCellScore>Thi</StyledTableCellScore>
             <StyledTableCellScore>TB Học kỳ</StyledTableCellScore>
             <StyledTableCellScore>TB Cả năm</StyledTableCellScore>
-            <StyledTableCellScore></StyledTableCellScore>
+            {/* <StyledTableCellScore></StyledTableCellScore> */}
           </TableRow>
         </StyledTableHead>
 
         <StyledTableBody>
           <TableRow key={studentDetail?.id}>
             <StyledTableCellScore>
-              {studentDetail?.score?.hk1.test15p}
+              {studentDetail?.score?.hk1?.test15p}
             </StyledTableCellScore>
 
             <StyledTableCellScore>
-              {studentDetail?.score?.hk1.test1Tiet}
+              {studentDetail?.score?.hk1?.test1Tiet}
             </StyledTableCellScore>
             <StyledTableCellScore>
-              {studentDetail?.score?.hk1.exam}
-            </StyledTableCellScore>
-
-            <StyledTableCellScore>
-              {studentDetail?.score?.hk1.averageScore}
+              {studentDetail?.score?.hk1?.exam}
             </StyledTableCellScore>
 
             <StyledTableCellScore>
-              {studentDetail?.score?.hk2.test15p}
+              {studentDetail?.score?.hk1?.averageScore}
             </StyledTableCellScore>
 
             <StyledTableCellScore>
-              {studentDetail?.score?.hk2.test1Tiet}
-            </StyledTableCellScore>
-            <StyledTableCellScore>
-              {studentDetail?.score?.hk2.exam}
+              {studentDetail?.score?.hk2?.test15p}
             </StyledTableCellScore>
 
             <StyledTableCellScore>
-              {studentDetail?.score?.hk2.averageScore}
+              {studentDetail?.score?.hk2?.test1Tiet}
+            </StyledTableCellScore>
+            <StyledTableCellScore>
+              {studentDetail?.score?.hk2?.exam}
+            </StyledTableCellScore>
+
+            <StyledTableCellScore>
+              {studentDetail?.score?.hk2?.averageScore}
             </StyledTableCellScore>
             <StyledTableCellScore>
               {studentDetail?.score?.averageScoreTotal}
             </StyledTableCellScore>
-            <StyledTableCellScore>
+            {/* <StyledTableCellScore>
               <StyledButtonEdit onClick={handleClick}>
                 <StyleIcon />
               </StyledButtonEdit>
@@ -174,7 +172,7 @@ const TableScore = () => {
                   </Button>
                 </Box>
               </Popover>
-            </StyledTableCellScore>
+            </StyledTableCellScore> */}
           </TableRow>
         </StyledTableBody>
       </Table>
