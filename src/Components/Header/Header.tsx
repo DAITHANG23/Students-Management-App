@@ -25,13 +25,14 @@ import {
   StyledBoxAvatar,
   StyledButtonLink,
   StyledBadge,
+  StyledAppbar,
 } from "@/components/Header/Header.styles";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Page } from "@/hooks/types";
 import { useRouter } from "next/navigation";
 
 const pages = ["Admin", "Document", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const settings = ["Profile", "Account", "Logout"];
 
 function ResponsiveAppBar() {
   const { onChoosePage } = useContext(AppContext) as AppContextType;
@@ -54,7 +55,11 @@ function ResponsiveAppBar() {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (value: string) => {
+    if (value === "Profile") {
+      route.push("/admin/user/thang");
+    }
+
     setAnchorElUser(null);
   };
 
@@ -64,16 +69,7 @@ function ResponsiveAppBar() {
   };
 
   return (
-    <AppBar
-      position="static"
-      sx={{
-        position: "fixed",
-        top: "0",
-        left: "0",
-        zIndex: "10",
-        backgroundColor: "rgba(66, 165, 245, 0.7)",
-      }}
-    >
+    <StyledAppbar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Link href="/">
@@ -194,7 +190,10 @@ function ResponsiveAppBar() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                <MenuItem
+                  key={setting}
+                  onClick={() => handleCloseUserMenu(setting)}
+                >
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
@@ -202,7 +201,7 @@ function ResponsiveAppBar() {
           </StyledBoxAvatar>
         </Toolbar>
       </Container>
-    </AppBar>
+    </StyledAppbar>
   );
 }
 export default ResponsiveAppBar;

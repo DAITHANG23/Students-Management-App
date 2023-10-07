@@ -256,18 +256,18 @@ export let students: Students[] = [
     time: "22:45",
     score: {
       hk1: {
-        test15p: 6,
-        test1Tiet: 5,
+        test15p: 10,
+        test1Tiet: 10,
         exam: 9,
         averageScore: 9,
       },
       hk2: {
-        test15p: 4,
+        test15p: 10,
         test1Tiet: 9,
         exam: 8,
-        averageScore: 7,
+        averageScore: 10,
       },
-      averageScoreTotal: 7,
+      averageScoreTotal: 9.6,
       rank: 8,
       classification: "Khá",
       result: "Lên lớp",

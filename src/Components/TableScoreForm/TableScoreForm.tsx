@@ -54,7 +54,7 @@ interface TableScoreFormProps {
     result?: string;
     noteResult?: string;
   };
-  ranking?: number;
+  ranking: number;
 }
 
 const TableScoreForm = (props: TableScoreFormProps) => {
@@ -194,6 +194,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
               {...register("test15PHk1")}
               min={0}
               max={10}
+              step="any"
             />
           </form>
         </TableCell>
@@ -206,6 +207,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
             {...register("test1TietHk1")}
             min={0}
             max={10}
+            step="any"
           />
         </TableCell>
         <TableCell sx={{ border: "none" }}>
@@ -217,6 +219,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
             {...register("examHk1")}
             min={0}
             max={10}
+            step="any"
           />
         </TableCell>
         <StyledTableCellAverage sx={{ border: "none" }}>
@@ -231,6 +234,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
             {...register("test15PHk2")}
             min={0}
             max={10}
+            step="any"
           />
         </TableCell>
         <TableCell sx={{ border: "none" }}>
@@ -242,6 +246,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
             {...register("test1TietHk2")}
             min={0}
             max={10}
+            step="any"
           />
         </TableCell>
         <TableCell sx={{ border: "none" }}>
@@ -253,6 +258,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
             {...register("examHk2")}
             min={0}
             max={10}
+            step="any"
           />
         </TableCell>
         <StyledTableCellAverage sx={{ border: "none" }}>

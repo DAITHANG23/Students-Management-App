@@ -35,6 +35,7 @@ import {
   StyledLink,
   StyledLinkPage,
   StyledLinkPageExist,
+  StyledBoxBtnItem,
 } from "@/components/TableClass/TableClass.styles";
 import TableScoreForm from "@/components/TableScoreForm/TableScoreForm";
 
@@ -57,9 +58,8 @@ const TableClass = () => {
 
   const nganhDutruong: NganhDutruong[] = ["Dự trưởng 1", "Dự trưởng 2"];
 
-  const { titleHeader, studentsList } = useContext(
-    AppContext
-  ) as AppContextType;
+  const { titleHeader, studentsList, onChoosePage, onChooseClassItem } =
+    useContext(AppContext) as AppContextType;
 
   const [studentsNganh, setStudentsNganh] = useState<Students[]>([]);
 
@@ -68,6 +68,8 @@ const TableClass = () => {
   const [studentsClass, setStudentsClass] = useState<Students[]>([]);
 
   const [chooseClass, setChooseClass] = useState<string>();
+
+  const [rankList, setRankList] = useState<number[]>([]);
 
   useEffect(() => {
     let studentsNganhChiencon: Students[] = [];
@@ -207,7 +209,10 @@ const TableClass = () => {
     );
 
     setStudentsClass(studentsClassList);
+
     setChooseClass(value);
+
+    onChooseClassItem(studentsClass);
   };
 
   const quantityGioi = studentsClass.filter(
@@ -291,35 +296,40 @@ const TableClass = () => {
     ],
   };
 
-  const arrStudentScore: number[] | undefined = [];
+  function rankings(arr: (number | undefined)[]) {
+    var sorted = arr.slice().sort(function (a: any, b: any) {
+      return b - a;
+    });
+    var ranks = arr.slice().map(function (v) {
+      return sorted.indexOf(v) + 1;
+    });
+    return ranks;
+  }
 
-  const tableStudentForm = studentsClass.map((student, index) => {
-    arrStudentScore.push(student.score?.averageScoreTotal as number);
+  useEffect(() => {
+    const arrStudentScore = studentsClass.map((student) => {
+      return student.score?.averageScoreTotal;
+    });
 
-    function rankings(arr: number[]) {
-      var sorted = arr.slice().sort(function (a, b) {
-        return b - a;
-      });
-      var ranks = arr.slice().map(function (v) {
-        return sorted.indexOf(v) + 1;
-      });
-      return ranks;
-    }
     const rank = rankings(arrStudentScore);
 
-    console.log("arrStudentScore", arrStudentScore);
-    console.log("rank", rank);
-    //console.log("rankIndex", rank[index]);
+    if (rank.length === studentsClass.length) {
+      setRankList(rank);
+    }
+  }, [studentsClass]);
 
+  const tableStudentForm = studentsClass.map((student, index) => {
     return (
-      <TableScoreForm key={student.id} {...student} ranking={rank[index]} />
+      <TableScoreForm key={student.id} {...student} ranking={rankList[index]} />
     );
   });
 
   return (
     <Container>
       <StyledBoxNav>
-        <StyledLink href={"/admin"}>Admin</StyledLink>
+        <StyledLink href={"/admin"} onClick={() => onChoosePage("admin")}>
+          Admin
+        </StyledLink>
         <BsDot />
         <StyledLinkPage>{titleHeader}</StyledLinkPage>
         <BsDot />
@@ -328,7 +338,7 @@ const TableClass = () => {
 
       <StyledTableContainer>
         <StyledBoxButton>
-          <Box sx={{ display: "flex", gap: "10px" }}>
+          <StyledBoxBtnItem>
             {nameClassList.map((item) => {
               return (
                 <>
@@ -343,7 +353,7 @@ const TableClass = () => {
                 </>
               );
             })}
-          </Box>
+          </StyledBoxBtnItem>
           <Box>
             <ReactApexChart
               options={options}

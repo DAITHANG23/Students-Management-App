@@ -5,9 +5,28 @@ import {
   TableBody,
   TableRow,
   Typography,
+  TableContainer,
+  Box,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import EditIcon from "@mui/icons-material/Edit";
+
+export const StyledTableCont = styled(TableContainer)(() => ({
+  marginTop: "40px",
+  boxShadow: "rgba(145, 158, 171, 0.16) 0px 4px 8px 0px",
+  "&:last-child td, &:last-child th": { border: 0 },
+  borderRadius: "16px",
+}));
+
+export const StyledBoxTitleHead = styled(Box)(({ theme }) => ({
+  borderStartEndRadius: theme.spacing(2),
+  borderStartStartRadius: theme.spacing(2),
+  border: "none",
+  backgroundColor: theme.palette.background.paper,
+  display: "flex",
+  justifyContent: "space-between",
+  padding: "20px 10px",
+}));
 
 export const StyledTableHead = styled(TableHead)(({ theme }) => ({
   backgroundColor: theme.palette.background.default,
@@ -87,4 +106,20 @@ export const StyledEditIcon = styled(EditIcon)(() => ({
 
 export const StyledTableCellScore = styled(TableCell)(() => ({
   textAlign: "center",
+}));
+
+export const StyledTableCellTitle = styled(TableCell)(() => ({
+  textAlign: "center",
+  fontWeight: 700,
+  border: "none",
+  fontSize: "16px",
+}));
+
+export const StyledTableRowBody = styled(TableRow)(({ theme }) => ({
+  backgroundColor: theme.palette.background.paper,
+}));
+
+export const StyledTableCellTitleHead = styled(TableCell)(() => ({
+  textAlign: "center",
+  fontWeight: "600",
 }));

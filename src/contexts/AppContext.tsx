@@ -49,6 +49,8 @@ export type AppContextType = {
     noteResult: string,
     ranking: number | undefined
   ) => void;
+
+  onChooseClassItem: (data: Students[]) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -63,6 +65,8 @@ const AppProvider = ({ children }: IProps) => {
   const [studentsList, setStudentsList] = useState<Students[]>(students);
 
   const [studentDetail, setStudentDetail] = useState<Students | undefined>();
+
+  const [studentClass, setStudentClass] = useState<Students[]>([]);
 
   let titleHeader = "Admin";
 
@@ -202,6 +206,10 @@ const AppProvider = ({ children }: IProps) => {
     setStudentsList(nextStudentList);
   };
 
+  const onChooseClassItem = (data: Students[]) => {
+    setStudentClass(data);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -216,6 +224,7 @@ const AppProvider = ({ children }: IProps) => {
         onCreateStudent,
         onStudentUpdate,
         onScoreStudent,
+        onChooseClassItem,
       }}
     >
       {children}

@@ -1,4 +1,12 @@
-import { Badge, Box, Button, Menu, Typography, styled } from "@mui/material";
+import {
+  AppBar,
+  Badge,
+  Box,
+  Button,
+  Menu,
+  Typography,
+  styled,
+} from "@mui/material";
 import Image from "next/image";
 
 export const StyledBoxLogoDisplayMd = styled(Box)`
@@ -69,4 +77,12 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
       opacity: 0,
     },
   },
+}));
+
+export const StyledAppbar = styled(AppBar)(() => ({
+  position: "fixed",
+  top: "0",
+  left: "0",
+  zIndex: "10",
+  backgroundColor: "rgba(66, 165, 245, 0.7)",
 }));

@@ -128,3 +128,8 @@ export const StyledLinkPageExist = styled(Typography)(({ theme }) => ({
   fontSize: "14px",
   color: theme.palette.primary.light,
 }));
+
+export const StyledBoxBtnItem = styled(Box)(() => ({
+  display: "flex",
+  gap: "10px",
+}));
