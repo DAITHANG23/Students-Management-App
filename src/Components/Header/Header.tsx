@@ -26,7 +26,7 @@ import {
   StyledButtonLink,
   StyledBadge,
   StyledAppbar,
-} from "@/components/Header/Header.styles";
+} from "@/components/Header/HeaderItem.styles";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Page } from "@/hooks/types";
 import { useRouter } from "next/navigation";
