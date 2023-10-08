@@ -1,5 +1,5 @@
 import HeaderPage from "@/components/HeaderPage/HeaderPage";
-import SideBar from "@/components/SideBar/SideBar";
+import SideBar from "@/components/SideBar/SideBarMain";
 import User from "@/components/User/User";
 import { Box } from "@mui/material";
 import React from "react";

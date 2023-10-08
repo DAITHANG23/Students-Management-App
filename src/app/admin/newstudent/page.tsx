@@ -1,5 +1,5 @@
 import NewStudent from "@/components/NewStudent/NewStudent";
-import SideBar from "@/components/SideBar/SideBar";
+import SideBar from "@/components/SideBar/SideBarMain";
 import { Box } from "@mui/material";
 import React from "react";
 

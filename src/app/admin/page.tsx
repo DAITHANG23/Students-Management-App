@@ -1,4 +1,4 @@
-import SideBar from "@/components/SideBar/SideBar";
+import SideBar from "@/components/SideBar/SideBarMain";
 import TableStudentsContainer from "@/components/TableStudentsContainer/TableStudentsContainer";
 import { Box } from "@mui/material";
 

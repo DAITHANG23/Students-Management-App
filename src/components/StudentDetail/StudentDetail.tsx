@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import SideBar from "@/components/SideBar/SideBar";
+import SideBar from "@/components/SideBar/SideBarMain";
 
 import {
   StyledBoxContainer,
