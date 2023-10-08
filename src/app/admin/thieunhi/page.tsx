@@ -1,4 +1,4 @@
-import HeaderPage from "@/components/HeaderPage/HeaderPage";
+import HeaderPage from "@/components/HeaderPage/HeaderPageMain";
 import SideBar from "@/components/SideBar/SideBarMain";
 import TableClass from "@/components/TableClass/TableClass";
 import { Box } from "@mui/material";

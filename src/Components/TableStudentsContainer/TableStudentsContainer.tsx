@@ -30,7 +30,7 @@ import StudentItem from "@/components/StudentItem/StudentItemMain";
 import TableHeader from "@/components/TableHeader/TableHeaderMain";
 
 import useQuantityStudents from "@/hooks/useQuantityStudents";
-import HeaderPage from "@/components/HeaderPage/HeaderPage";
+import HeaderPage from "@/components/HeaderPage/HeaderPageMain";
 
 const TableStudentsContainer = () => {
   const [studentClass, setStudentClass] = useState<Students[]>([]);
