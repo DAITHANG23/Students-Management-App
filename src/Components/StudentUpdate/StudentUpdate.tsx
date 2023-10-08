@@ -31,7 +31,7 @@ import {
   StyledButtonCancel,
   StyledButtonDelete,
   StyledBoxFormUpdate,
-} from "@/components/StudentUpdate/StudentUpdate.styles";
+} from "@/components/StudentUpdate/StudentUpdateMain.styles";
 
 import { useRouter } from "next/navigation";
 import { Box, TextField, Typography } from "@mui/material";

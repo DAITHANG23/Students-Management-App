@@ -22,7 +22,7 @@ import {
   StyledNamePhone,
   StyledPopover,
   StyledVisibilityIcon,
-} from "@/components/StudentItem/StudentItem.styles";
+} from "@/components/StudentItem/StudentItemMain.styles";
 import StudentUpdate from "@/components/StudentUpdate/StudentUpdate";
 
 import { useRouter } from "next/navigation";
