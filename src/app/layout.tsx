@@ -1,6 +1,6 @@
 import "./globals.css";
-import Footer from "@/components/Footer/Footer";
-import Header from "@/components/Header/Header";
+import Footer from "@/components/Footer/FooterMain";
+import Header from "@/components/Header/HeaderMain";
 import type { Metadata } from "next";
 import { Box } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
