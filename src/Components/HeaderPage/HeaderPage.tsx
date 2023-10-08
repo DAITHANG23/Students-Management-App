@@ -1,21 +1,10 @@
 "use client";
-import { Typography, Popover } from "@mui/material";
 
 import {
   StyledHeaderContainer,
   StyledUserContainer,
   StyledTitle,
-  StyledLogin,
-  StyledSearch,
-  StyledIconGlass,
-  StyledButtonBell,
-  StyledButtonLogin,
-  StyledImgAvatar,
-  StyledContainerContent,
-  StyledNameLogin,
-  StyledRoleLogin,
-  StyledExpandMoreIcon,
-} from "@/components/HeaderPage/HeaderPage.styles";
+} from "@/components/HeaderPage/HeaderPageItem.styles";
 import { useContext } from "react";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
