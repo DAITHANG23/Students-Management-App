@@ -5,7 +5,7 @@ import {
   StyledLink,
   StyledLinkPage,
   StyledLinkPageExist,
-} from "@/components/User/User.styles";
+} from "@/components/User/UserItem.styles";
 import { BsDot } from "react-icons/bs";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Avatar, Box, Container, Tab, Tabs, Typography } from "@mui/material";

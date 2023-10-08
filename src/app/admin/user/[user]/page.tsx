@@ -1,6 +1,6 @@
 import HeaderPage from "@/components/HeaderPage/HeaderPageMain";
 import SideBar from "@/components/SideBar/SideBarMain";
-import User from "@/components/User/User";
+import User from "@/components/User/UserMain";
 import { Box } from "@mui/material";
 import React from "react";
 
