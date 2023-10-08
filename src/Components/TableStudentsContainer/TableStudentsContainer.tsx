@@ -27,7 +27,7 @@ import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Students, Class } from "@/hooks/types";
 import { useRouter } from "next/navigation";
 import StudentItem from "@/components/StudentItem/StudentItemMain";
-import TableHeader from "@/components/TableHeader/TableHeader";
+import TableHeader from "@/components/TableHeader/TableHeaderMain";
 
 import useQuantityStudents from "@/hooks/useQuantityStudents";
 import HeaderPage from "@/components/HeaderPage/HeaderPage";

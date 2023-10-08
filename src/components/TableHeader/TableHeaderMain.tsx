@@ -8,7 +8,7 @@ import {
   StyledBoxButton,
   StyledInputSearch,
   StyledIconGlassBold,
-} from "@/components/TableHeader/TableHeader.styles";
+} from "@/components/TableHeader/TableHeaderItem.styles";
 import { useSearching } from "@/hooks/useSearch";
 import { Class } from "@/hooks/types";
 
