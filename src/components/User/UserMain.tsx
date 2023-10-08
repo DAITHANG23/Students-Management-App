@@ -12,8 +12,8 @@ import { Avatar, Box, Container, Tab, Tabs, Typography } from "@mui/material";
 import { Icon } from "@iconify/react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import PeopleIcon from "@mui/icons-material/People";
-import Followers from "../Followers/Followers";
-import Friends from "../Friends/Friends";
+import Followers from "../Followers/FollowersMain";
+import Friends from "../Friends/FriendsMain";
 import { ValueTab } from "@/hooks/types";
 
 const User = () => {
