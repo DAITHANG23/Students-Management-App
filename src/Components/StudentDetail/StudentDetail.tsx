@@ -24,7 +24,7 @@ import { BsDot } from "react-icons/bs";
 
 import StudentUpdate from "@/components/StudentUpdate/StudentUpdateItem";
 
-import TableScore from "@/components/TableScore/TableScore";
+import TableScore from "@/components/TableScore/TableScoreMain";
 
 interface StudentDetailProps {
   id: string;
