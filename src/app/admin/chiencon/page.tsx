@@ -4,7 +4,7 @@ import TableClass from "@/components/TableClass/TableClass";
 import { Box } from "@mui/material";
 import React from "react";
 
-const ChienconPage = () => {
+const ChienCon = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <SideBar />
@@ -16,4 +16,4 @@ const ChienconPage = () => {
   );
 };
 
-export default ChienconPage;
+export default ChienCon;
