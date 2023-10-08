@@ -1,6 +1,6 @@
 import HeaderPage from "@/components/HeaderPage/HeaderPageMain";
 import SideBar from "@/components/SideBar/SideBarMain";
-import TableClass from "@/components/TableClass/TableClass";
+import TableClass from "@/components/TableClass/TableClassMain";
 import { Box } from "@mui/material";
 import React from "react";
 
