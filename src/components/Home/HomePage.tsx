@@ -1,5 +1,5 @@
 import React from "react";
-import SlideBar from "@/components/SlideBar/SlideBar";
+import SlideBar from "@/components/SlideBar/SlideBarHome";
 import { Container } from "@mui/material";
 
 const HomePage = () => {
