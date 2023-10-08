@@ -21,7 +21,7 @@ import {
   StyledTableCellTitleExpanse,
   StyledTableCellScore,
   StyledInputText,
-} from "@/components/TableScoreForm/TableScoreForm.styles";
+} from "@/components/TableScoreForm/TableScoreFormItem.styles";
 import SaveIcon from "@mui/icons-material/Save";
 
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";

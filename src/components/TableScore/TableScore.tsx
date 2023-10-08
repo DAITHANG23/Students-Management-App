@@ -8,7 +8,7 @@ import {
   StyledTableCellTitle,
   StyledTableRowBody,
   StyledTableCellTitleHead,
-} from "@/components/TableScore/TableScore.styles";
+} from "@/components/TableScore/TableScoreItem.styles";
 import {
   Table,
   TableRow,
