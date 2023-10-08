@@ -11,7 +11,7 @@ import {
   StyledDirectionIcon,
   StyledTypography,
   StyledDotIcon,
-} from "@/components/SideBar/SideBar.styles";
+} from "@/components/SideBar/SideBarItem.styles";
 import { useRouter } from "next/navigation";
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 import { Collapse } from "@mui/material";

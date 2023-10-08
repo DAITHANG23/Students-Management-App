@@ -15,7 +15,7 @@ import {
   StyledModal,
   StyledBoxInfo,
   StyledTableCellClass,
-} from "@/components/TableStudentsContainer/TableStudentsContainer.styles";
+} from "@/components/TableStudentsContainer/TableStudentsContainerItem.styles";
 import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import { useSortingTable } from "@/hooks/useSorting";

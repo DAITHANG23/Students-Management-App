@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
-import { StyledImage } from "./SlideBar.styles";
+import { StyledImage } from "./SlideBarItem.styles";
 
 export default function SlideBar() {
   return (

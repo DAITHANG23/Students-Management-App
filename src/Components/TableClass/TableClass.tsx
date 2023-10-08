@@ -36,7 +36,7 @@ import {
   StyledLinkPage,
   StyledLinkPageExist,
   StyledBoxBtnItem,
-} from "@/components/TableClass/TableClass.styles";
+} from "@/components/TableClass/TableClassItem.styles";
 import TableScoreForm from "@/components/TableScoreForm/TableScoreForm";
 
 import { BsDot } from "react-icons/bs";
