@@ -16,7 +16,7 @@ import {
   StyledLinkPage,
   StyledLinkPageExist,
   StyledBoxInfoContainer,
-} from "@/components/StudentDetail/StudentDetail.styles";
+} from "@/components/StudentDetail/StudentDetailItem.styles";
 
 import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
