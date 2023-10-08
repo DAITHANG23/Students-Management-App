@@ -57,32 +57,32 @@ export const StyledTableCellStatus = styled(TableCell)(() => ({
   width: "150px",
 }));
 
-export const StyledTitleStatus = styled(Typography)<{ styleActive: string }>(
-  ({ theme, styleActive }) => ({
+export const StyledTitleStatus = styled(Typography)<{ styleactive: string }>(
+  ({ theme, styleactive }) => ({
     border: "none",
     color: theme.palette.background.paper,
     backgroundColor:
-      styleActive === nganhChiencon[0] ||
-      styleActive === nganhChiencon[1] ||
-      styleActive === nganhChiencon[2]
+      styleactive === nganhChiencon[0] ||
+      styleactive === nganhChiencon[1] ||
+      styleactive === nganhChiencon[2]
         ? "#ec407a"
-        : styleActive === nganhAu[0] ||
-          styleActive === nganhAu[1] ||
-          styleActive === nganhAu[2] ||
-          styleActive === nganhAu[3]
+        : styleactive === nganhAu[0] ||
+          styleactive === nganhAu[1] ||
+          styleactive === nganhAu[2] ||
+          styleactive === nganhAu[3]
         ? "#76ff03"
-        : styleActive === nganhThieu[0] ||
-          styleActive === nganhThieu[1] ||
-          styleActive === nganhThieu[2] ||
-          styleActive === nganhThieu[3] ||
-          styleActive === nganhThieu[4] ||
-          styleActive === nganhThieu[5]
+        : styleactive === nganhThieu[0] ||
+          styleactive === nganhThieu[1] ||
+          styleactive === nganhThieu[2] ||
+          styleactive === nganhThieu[3] ||
+          styleactive === nganhThieu[4] ||
+          styleactive === nganhThieu[5]
         ? "#0d47a1"
-        : styleActive === nganhNghia[0] ||
-          styleActive === nganhNghia[1] ||
-          styleActive === nganhNghia[2]
+        : styleactive === nganhNghia[0] ||
+          styleactive === nganhNghia[1] ||
+          styleactive === nganhNghia[2]
         ? "#ffeb3b"
-        : styleActive === nganhDutruong[0] || styleActive === nganhDutruong[1]
+        : styleactive === nganhDutruong[0] || styleactive === nganhDutruong[1]
         ? "#d50000"
         : "",
     textAlign: "center",

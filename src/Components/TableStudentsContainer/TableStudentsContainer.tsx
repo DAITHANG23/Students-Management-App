@@ -20,6 +20,7 @@ import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import { useSortingTable } from "@/hooks/useSorting";
 import { usePaging } from "@/hooks/usePagination";
+import ClipLoader from "react-spinners/ClipLoader";
 
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
@@ -189,15 +190,15 @@ const TableStudentsContainer = () => {
     }
   };
 
-  const TableListUsers = sortedTableRow(
-    studentClass,
+  // const TableListUsers = sortedTableRow(
+  //   studentClass,
 
-    getComparator(oneOderDirection, valueToOrderBy)
-  )
-    ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-    .map((student) => {
-      return <StudentItem {...student} key={student.id} />;
-    });
+  //   getComparator(oneOderDirection, valueToOrderBy)
+  // )
+  //   ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  //   .map((student) => {
+  //     return <StudentItem {...student} key={student.id} />;
+  //   });
 
   return (
     <StyledTableContainer>
@@ -238,7 +239,25 @@ const TableStudentsContainer = () => {
             <StyledTitleRow sx={{ width: "32px" }}></StyledTitleRow>
           </TableRow>
         </StyledTableHead>
-        <StyledTableBody>{TableListUsers}</StyledTableBody>
+        <StyledTableBody>
+          {!studentClass && (
+            <tr>
+              <td colSpan={7}>
+                <ClipLoader />
+              </td>
+            </tr>
+          )}
+          {studentClass &&
+            sortedTableRow(
+              studentClass,
+
+              getComparator(oneOderDirection, valueToOrderBy)
+            )
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((student) => {
+                return <StudentItem {...student} key={student.id} />;
+              })}
+        </StyledTableBody>
       </Table>
       <StyledTablePagination
         rowsPerPageOptions={[5, 10, 20]}

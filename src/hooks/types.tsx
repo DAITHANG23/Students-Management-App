@@ -79,7 +79,8 @@ export type Page =
   | "nghiasi"
   | "dutruong"
   | "document"
-  | "blog";
+  | "blog"
+  | "Profile";
 
 export type NganhChiencon = "Chiên con" | "Ấu 1A" | "Ấu 1B";
 
@@ -103,3 +104,5 @@ export type NameClassList =
   | NganhNghia[]
   | NganhThieu[]
   | NganhDutruong[];
+
+export type ValueTab = "Profile" | "Followers" | "Friends";

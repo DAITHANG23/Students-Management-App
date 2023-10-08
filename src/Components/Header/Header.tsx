@@ -58,6 +58,7 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = (value: string) => {
     if (value === "Profile") {
       route.push("/admin/user/thang");
+      onChoosePage(value);
     }
 
     setAnchorElUser(null);

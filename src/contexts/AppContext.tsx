@@ -104,6 +104,10 @@ const AppProvider = ({ children }: IProps) => {
     titleHeader = "Dự Trưởng";
 
     imageHeader = "/images/logo_dutruong.png";
+  } else if (onPage === "Profile") {
+    titleHeader = "Profile";
+
+    // imageHeader = "";
   }
 
   const onStudentDetail = (studentId: number) => {

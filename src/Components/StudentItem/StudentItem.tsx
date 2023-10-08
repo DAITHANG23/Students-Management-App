@@ -193,7 +193,7 @@ const StudentItem = (props: UserItemProps) => {
         </StyledTableCellName>
 
         <StyledTableCellStatus>
-          <StyledTitleStatus styleActive={classNameItem}>
+          <StyledTitleStatus styleactive={classNameItem}>
             {classItem}
           </StyledTitleStatus>
         </StyledTableCellStatus>

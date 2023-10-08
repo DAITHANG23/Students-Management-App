@@ -28,7 +28,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </Head>
-      <body>
+      <body suppressHydrationWarning={true}>
         <Providers>
           <AppProvider>
             <ThemeProvider theme={theme}>
