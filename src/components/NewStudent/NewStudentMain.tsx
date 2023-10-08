@@ -31,7 +31,7 @@ import {
   StyledLink,
   StyledLinkPage,
   StyledLinkPageExist,
-} from "@/components/NewStudent/NewStudent.stylesItem";
+} from "@/components/NewStudent/NewStudentItem.styles";
 import { Icon } from "@iconify/react";
 import { useForm, Controller } from "react-hook-form";
 import { BsDot } from "react-icons/bs";
