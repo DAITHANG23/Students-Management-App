@@ -22,7 +22,7 @@ import { useRouter } from "next/navigation";
 import { Icon } from "@iconify/react";
 import { BsDot } from "react-icons/bs";
 
-import StudentUpdate from "@/components/StudentUpdate/StudentUpdate";
+import StudentUpdate from "@/components/StudentUpdate/StudentUpdateItem";
 
 import TableScore from "@/components/TableScore/TableScore";
 

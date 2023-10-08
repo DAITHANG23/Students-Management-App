@@ -23,7 +23,7 @@ import {
   StyledPopover,
   StyledVisibilityIcon,
 } from "@/components/StudentItem/StudentItemMain.styles";
-import StudentUpdate from "@/components/StudentUpdate/StudentUpdate";
+import StudentUpdate from "@/components/StudentUpdate/StudentUpdateItem";
 
 import { useRouter } from "next/navigation";
 
