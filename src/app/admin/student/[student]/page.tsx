@@ -1,4 +1,4 @@
-import StudentDetail from "@/components/StudentDetail/StudentDetail";
+import StudentDetail from "@/components/StudentDetail/StudentDetailMain";
 import React from "react";
 
 const Student = ({ params }: { params: { student: string } }) => {
