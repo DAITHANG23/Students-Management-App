@@ -73,7 +73,7 @@ const AppProvider = ({ children }: IProps) => {
   let imageHeader = "/images/users.png";
 
   if (onPage === "admin") {
-    titleHeader = "Amin";
+    titleHeader = "Admin";
 
     imageHeader = "/images/users.png";
   } else if (onPage === "document") {

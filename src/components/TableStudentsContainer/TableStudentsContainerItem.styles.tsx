@@ -103,7 +103,7 @@ export const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
   borderEndStartRadius: "16px",
   borderEndEndRadius: "16px",
   justifyContent: "space-between",
-  "& .css-levciy-MuiTablePagination-displayedRows": {
+  "& .MuiTablePagination-displayedRows.css-1chpzqh ": {
     paddingLeft: "630px",
   },
 }));
