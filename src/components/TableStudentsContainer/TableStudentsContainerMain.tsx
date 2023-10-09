@@ -226,7 +226,7 @@ const TableStudentsContainer = () => {
       <Table>
         <StyledTableHead>
           <TableRow>
-            <TableCell onClick={() => createSortHandle("id")} width={"120px"}>
+            <TableCell onClick={() => createSortHandle("id")}>
               <TableSortLabel>ID</TableSortLabel>
             </TableCell>
             <StyledTitleRowName onClick={() => createSortHandle("name")}>
@@ -244,15 +244,16 @@ const TableStudentsContainer = () => {
           </TableRow>
         </StyledTableHead>
         <StyledTableBody>
-          {sortedTableRow(
-            studentClass,
+          {studentClass &&
+            sortedTableRow(
+              studentClass,
 
-            getComparator(oneOderDirection, valueToOrderBy)
-          )
-            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            .map((student) => {
-              return <StudentItem {...student} key={student.id} />;
-            })}
+              getComparator(oneOderDirection, valueToOrderBy)
+            )
+              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((student) => {
+                return <StudentItem {...student} key={student.id} />;
+              })}
         </StyledTableBody>
       </Table>
       <StyledTablePagination
