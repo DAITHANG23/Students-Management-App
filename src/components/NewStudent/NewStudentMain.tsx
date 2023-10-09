@@ -296,7 +296,7 @@ const NewStudent = () => {
                   </StyledBoxDes>
 
                   <StyledBoxDes>
-                    <label htmlFor="address">Address</label>
+                    <label htmlFor="address">Địa chỉ</label>
                     <StyledInputName
                       type="text"
                       id="address"
