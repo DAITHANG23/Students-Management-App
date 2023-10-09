@@ -98,7 +98,7 @@ export const StyledTitleRowStatus = styled(TableCell)(({ theme }) => ({
 }));
 
 export const StyledTablePagination = styled(TablePagination)(({ theme }) => ({
-  backgroundColor: "#FFF",
+  backgroundColor: theme.palette.background.paper,
   display: "flex",
   borderEndStartRadius: "16px",
   borderEndEndRadius: "16px",

@@ -12,15 +12,19 @@ import {
   StyledTablePagination,
   StyledButton,
   StyledBoxButton,
-  StyledModal,
   StyledBoxInfo,
   StyledTableCellClass,
 } from "@/components/TableStudentsContainer/TableStudentsContainerItem.styles";
+import dynamic from "next/dynamic";
+
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+
 import { ApexOptions } from "apexcharts";
-import ReactApexChart from "react-apexcharts";
+//import ReactApexChart from "react-apexcharts";
 import { useSortingTable } from "@/hooks/useSorting";
 import { usePaging } from "@/hooks/usePagination";
-import ClipLoader from "react-spinners/ClipLoader";
 
 import { AppContext, AppContextType } from "@/contexts/AppContext";
 
@@ -222,7 +226,7 @@ const TableStudentsContainer = () => {
       <Table>
         <StyledTableHead>
           <TableRow>
-            <TableCell onClick={() => createSortHandle("id")}>
+            <TableCell onClick={() => createSortHandle("id")} width={"120px"}>
               <TableSortLabel>ID</TableSortLabel>
             </TableCell>
             <StyledTitleRowName onClick={() => createSortHandle("name")}>
@@ -240,23 +244,15 @@ const TableStudentsContainer = () => {
           </TableRow>
         </StyledTableHead>
         <StyledTableBody>
-          {!studentClass && (
-            <tr>
-              <td colSpan={7}>
-                <ClipLoader />
-              </td>
-            </tr>
-          )}
-          {studentClass &&
-            sortedTableRow(
-              studentClass,
+          {sortedTableRow(
+            studentClass,
 
-              getComparator(oneOderDirection, valueToOrderBy)
-            )
-              ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((student) => {
-                return <StudentItem {...student} key={student.id} />;
-              })}
+            getComparator(oneOderDirection, valueToOrderBy)
+          )
+            ?.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((student) => {
+              return <StudentItem {...student} key={student.id} />;
+            })}
         </StyledTableBody>
       </Table>
       <StyledTablePagination

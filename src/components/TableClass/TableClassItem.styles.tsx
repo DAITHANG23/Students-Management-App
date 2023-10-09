@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Box,
   Button,
@@ -39,6 +41,7 @@ export const StyledTableCellTitle = styled(TableCell)(({ theme }) => ({
   border: "none",
   background: theme.palette.background.default,
 }));
+
 export const StyledTableCellTitleScore = styled(TableCell)(({ theme }) => ({
   width: "38%",
   textAlign: "center",
@@ -73,10 +76,10 @@ export const StyledBtnSave = styled(Button)(({ theme }) => ({
 
 export const StyledButtonClass = styled(Button)<{
   styleactive: string;
-  stylechoose: boolean;
+  stylechoose: string | undefined;
 }>(({ styleactive, stylechoose, theme }) => ({
   padding: "5px 10px",
-  border: "none",
+  //border: "none",
   borderRadius: "12px",
 
   color: NganhChiencon.includes(styleactive)
@@ -102,6 +105,10 @@ export const StyledButtonClass = styled(Button)<{
     ? "rgba(255, 86, 48, 0.16)"
     : "",
   fontWeight: 600,
+
+  //opacity: stylechoose === "true" ? 1 : 0.5,
+
+  border: stylechoose === "true" ? "2px solid" : "none",
 }));
 
 export const StyledBoxNav = styled(Box)(() => ({

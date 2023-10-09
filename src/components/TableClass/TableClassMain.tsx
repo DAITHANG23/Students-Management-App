@@ -20,8 +20,13 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import dynamic from "next/dynamic";
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
+
 import { ApexOptions } from "apexcharts";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import React, { useContext, useEffect, useState } from "react";
 
 import {
@@ -40,6 +45,7 @@ import {
 import TableScoreForm from "@/components/TableScoreForm/TableScoreFormMain";
 
 import { BsDot } from "react-icons/bs";
+
 const TableClass = () => {
   const nganhChiencon: NganhChiencon[] = ["Chiên con", "Ấu 1A", "Ấu 1B"];
 
@@ -325,7 +331,7 @@ const TableClass = () => {
   });
 
   return (
-    <Container>
+    <Container key={studentsNganh.toString()}>
       <StyledBoxNav>
         <StyledLink href={"/admin"} onClick={() => onChoosePage("admin")}>
           Admin
@@ -345,7 +351,7 @@ const TableClass = () => {
                   <StyledButtonClass
                     styleactive={item}
                     onClick={() => onChooseClass(item)}
-                    stylechoose={chooseClass === item}
+                    stylechoose={(chooseClass === item).toString()}
                     key={item}
                   >
                     {item.toLowerCase()}
@@ -368,7 +374,7 @@ const TableClass = () => {
           </Typography>
         </StyledBoxButton>
 
-        <Box>
+        <Box key={chooseClass}>
           <TableHead>
             <TableRow>
               <StyledTableCellTitle>Họ Tên</StyledTableCellTitle>

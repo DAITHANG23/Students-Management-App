@@ -169,11 +169,11 @@ const TableScoreForm = (props: TableScoreFormProps) => {
   };
 
   return (
-    <>
+    <React.Fragment key={id}>
       <TableRow
-        key={id}
+        // key={id}
         sx={{
-          "&:nth-child() td, &:last-child th,&:last-child td": { border: 0 },
+          "&:nth-of-type() td, &:last-child th,&:last-child td": { border: 0 },
           border: "none",
         }}
       >
@@ -347,7 +347,7 @@ const TableScoreForm = (props: TableScoreFormProps) => {
           </StyledCollapse>
         </StyledTableCellCollapse>
       </TableRow>
-    </>
+    </React.Fragment>
   );
 };
 

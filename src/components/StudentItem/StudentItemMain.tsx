@@ -1,5 +1,7 @@
+"use client";
+
 import { useContext, useState } from "react";
-//import { useRemoveUser } from "@/hooks/useFetch";
+
 import { Box, TableCell, Button, Typography, Avatar } from "@mui/material";
 import {
   StyledTableCellName,

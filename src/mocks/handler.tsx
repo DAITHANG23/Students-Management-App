@@ -1,3 +1,5 @@
+"use client";
+
 import { Students } from "@/hooks/types";
 
 export let students: Students[] = [

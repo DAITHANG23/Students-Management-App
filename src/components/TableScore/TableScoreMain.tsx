@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useContext, useState } from "react";
 import {
   StyledTableHead,
@@ -49,7 +51,7 @@ const TableScore = () => {
             ].map((item) => {
               return (
                 <>
-                  <StyledTableCellScore>{item}</StyledTableCellScore>
+                  <StyledTableCellScore key={item}>{item}</StyledTableCellScore>
                 </>
               );
             })}

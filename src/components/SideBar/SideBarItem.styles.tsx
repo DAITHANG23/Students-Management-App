@@ -1,3 +1,5 @@
+"use client";
+
 import { styled, Box, Typography } from "@mui/material";
 import ChevronRightOutlinedIcon from "@mui/icons-material/ChevronRightOutlined";
 import { BsDot } from "react-icons/bs";

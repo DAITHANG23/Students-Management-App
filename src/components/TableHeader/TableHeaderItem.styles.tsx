@@ -1,3 +1,5 @@
+"use client";
+
 import { styled, Box } from "@mui/material";
 import { PiMagnifyingGlassBold } from "react-icons/pi";
 
