@@ -1,6 +1,6 @@
 "use client";
 
-import { Students } from "@/hooks/types";
+import { Students, User } from "@/hooks/types";
 
 export let students: Students[] = [
   {
@@ -1405,6 +1405,54 @@ export let students: Students[] = [
       classification: "Giỏi",
       result: "Lên lớp",
       noteResult: "Good",
+    },
+  },
+];
+
+export const users: User[] = [
+  {
+    id: "1",
+    name: "Dom",
+    lastName: "Nguyen",
+    avatar: "/images/avatar_6.jpg",
+    job: "Frontend Developer",
+    numberFollowers: 20,
+    numberFriends: 20,
+    about: {
+      content: "I love Information Technology",
+      mail: "Nguyendaithang23061997@gmail.com",
+      live: "HCM",
+      company: "freelancer",
+    },
+    social: {
+      facebook: "https://www.facebook.com/DomNguyen2306",
+      instagram: "https://www.instagram.com/nguyen_dai_thang/",
+    },
+    post: {
+      id: "1",
+      date: "11 Oct 2023",
+      content:
+        "The sun slowly set over the horizon, painting the sky in vibrant hues of orange and pink.",
+      image:
+        "https://api-prod-minimal-v510.vercel.app/assets/images/travel/travel_2.jpg",
+      comment: [
+        {
+          id: "2",
+          name: "Anna",
+          lastName: "Nguyen",
+          avatar: "/images/avatar_3.jpg",
+          content: "Wow, so beautiful !!",
+          date: "12 Oct 2023",
+        },
+        {
+          id: "3",
+          name: "Marry",
+          lastName: "Nguyen",
+          avatar: "/images/avatar_4.jpg",
+          content: "Wow, so beautiful !!",
+          date: "12 Oct 2023",
+        },
+      ],
     },
   },
 ];

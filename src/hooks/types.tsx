@@ -38,6 +38,40 @@ export interface Students {
   };
 }
 
+export interface User {
+  id: string;
+  name: string;
+  lastName: string;
+  avatar: string;
+  job: string;
+  numberFollowers: number;
+  numberFriends: number;
+  about: {
+    content: string;
+    mail: string;
+    live: string;
+    company: string;
+  };
+  social: {
+    facebook: string;
+    instagram: string;
+  };
+  post: {
+    id: string;
+    date: string;
+    content: string;
+    image: string;
+    comment: {
+      id: string;
+      name: string;
+      lastName: string;
+      avatar: string;
+      content: string;
+      date: string;
+    }[];
+  };
+}
+
 export type Order = "asc" | "desc";
 
 export interface UseStudents {

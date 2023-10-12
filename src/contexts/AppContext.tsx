@@ -159,6 +159,25 @@ const AppProvider = ({ children }: IProps) => {
         ("0" + day.getHours()).substr(-2),
         ("0" + day.getMinutes()).substr(-2),
       ].join(":"),
+      score: {
+        hk1: {
+          test15p: studentItem?.score?.hk1?.test15p,
+          test1Tiet: studentItem?.score?.hk2?.test1Tiet,
+          exam: studentItem?.score?.hk1?.exam,
+          averageScore: studentItem?.score?.hk1?.averageScore,
+        },
+        hk2: {
+          test15p: studentItem?.score?.hk2?.test15p,
+          test1Tiet: studentItem?.score?.hk2?.test1Tiet,
+          exam: studentItem?.score?.hk2?.exam,
+          averageScore: studentItem?.score?.hk2?.averageScore,
+        },
+        averageScoreTotal: studentItem?.score?.averageScoreTotal,
+        classification: studentItem?.score?.classification,
+        result: studentItem?.score?.result,
+        noteResult: studentItem?.score?.noteResult,
+        rank: studentItem?.score?.rank,
+      },
     };
 
     studentsList[studentIndex] = newStudent;
