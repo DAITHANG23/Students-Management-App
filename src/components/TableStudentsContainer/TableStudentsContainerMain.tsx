@@ -43,9 +43,7 @@ const TableStudentsContainer = () => {
 
   const router = useRouter();
 
-  const { studentsList, onStudentsList } = useContext(
-    AppContext
-  ) as AppContextType;
+  const { studentsList } = useContext(AppContext) as AppContextType;
 
   let studentsListSearch: Students[] = [];
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { Students, Page } from "@/hooks/types";
-import { students } from "@/mocks/handler";
+import { Students, Page, User, NewPost } from "@/hooks/types";
+import { students, users } from "@/mocks/handler";
 import { createContext, useState } from "react";
 
 interface IProps {
@@ -51,6 +51,14 @@ export type AppContextType = {
   ) => void;
 
   onChooseClassItem: (data: Students[]) => void;
+
+  usersList: User[];
+
+  userItem: User;
+
+  onCreateNewPost: (post: NewPost, id: string) => void;
+
+  createCommentPost: (value: string, id: string, idPost: number) => void;
 };
 
 export const AppContext = createContext<AppContextType | null>(null);
@@ -67,6 +75,10 @@ const AppProvider = ({ children }: IProps) => {
   const [studentDetail, setStudentDetail] = useState<Students | undefined>();
 
   const [studentClass, setStudentClass] = useState<Students[]>([]);
+
+  const [usersList, setUsersList] = useState<User[]>(users);
+
+  const [userItem, setUserItem] = useState<User>(usersList[0]);
 
   let titleHeader = "Admin";
 
@@ -233,6 +245,75 @@ const AppProvider = ({ children }: IProps) => {
     setStudentClass(data);
   };
 
+  const onCreateNewPost = (post: NewPost, id: string) => {
+    const userIndex = usersList.findIndex((user) => user.id === id);
+
+    const userItem = usersList.find((user) => user.id === id);
+
+    const postItem = userItem?.post.find((postItem) => postItem.id === post.id);
+
+    const newPost = {
+      id: post.id,
+
+      date: post.date,
+
+      content: post.content,
+
+      avatar: userItem?.avatar,
+
+      name: userItem?.name,
+
+      lastName: userItem?.lastName,
+
+      image: post.image,
+
+      comment: [],
+    };
+
+    const nextUser = [...usersList];
+
+    if (newPost) {
+      nextUser[userIndex].post.splice(0, 0, newPost);
+    }
+
+    setUsersList(nextUser);
+  };
+
+  const createCommentPost = (value: string, id: string, idPost: number) => {
+    const userIndex = usersList.findIndex((user) => user.id === id);
+
+    const userItem = usersList.find((user) => user.id === id);
+
+    const day = new Date();
+
+    const newComment = {
+      id: id,
+      name: userItem?.name,
+      lastName: userItem?.lastName,
+      avatar: userItem?.avatar,
+      content: value,
+      date: [
+        day.getDate(),
+
+        day.toLocaleString("en-US", { month: "short" }),
+
+        day.toLocaleString("en-US", { year: "2-digit" }),
+      ].join(" "),
+    };
+
+    const nextUser = [...usersList];
+
+    const postItem = nextUser[userIndex].post.find(
+      (postItem) => postItem.id === idPost
+    );
+
+    if (newComment) {
+      postItem?.comment?.splice(0, 0, newComment);
+    }
+
+    setUsersList(nextUser);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -248,6 +329,10 @@ const AppProvider = ({ children }: IProps) => {
         onStudentUpdate,
         onScoreStudent,
         onChooseClassItem,
+        usersList,
+        userItem,
+        onCreateNewPost,
+        createCommentPost,
       }}
     >
       {children}

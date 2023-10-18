@@ -8,7 +8,7 @@ const UserItemPage = () => {
   return (
     <Box sx={{ display: "flex" }}>
       <SideBar />
-      <Box sx={{ width: "81%" }}>
+      <Box sx={{ width: "81%", paddingBottom: "100px" }}>
         <HeaderPage />
         <User />
       </Box>

@@ -278,7 +278,7 @@ export const StyledBoxPostContainer = styled(Box)(() => ({
   width: "69%",
 }));
 
-export const StyledBoxFieldPost = styled(Box)(({ theme }) => ({
+export const StyledBoxFieldPost = styled("form")(({ theme }) => ({
   width: "100%",
   backgroundColor: theme.palette.background.paper,
   border: "none",
@@ -372,13 +372,16 @@ export const StyledContentPost = styled(Typography)(({ theme }) => ({
 
 export const StyledBoxImgPost = styled(Box)(() => ({
   width: "100%",
-  height: "418px",
+  height: "auto",
   paddingTop: "10px",
 }));
 
 export const StyledImgPost = styled("img")(({ theme }) => ({
   border: "none",
   borderRadius: theme.spacing(1),
+  objectFit: "cover",
+  width: "100%",
+  height: "100%",
 }));
 
 export const StyledBoxIconComment = styled(Box)(({ theme }) => ({

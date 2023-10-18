@@ -1428,31 +1428,94 @@ export const users: User[] = [
       facebook: "https://www.facebook.com/DomNguyen2306",
       instagram: "https://www.instagram.com/nguyen_dai_thang/",
     },
-    post: {
-      id: "1",
-      date: "11 Oct 2023",
-      content:
-        "The sun slowly set over the horizon, painting the sky in vibrant hues of orange and pink.",
-      image:
-        "https://api-prod-minimal-v510.vercel.app/assets/images/travel/travel_2.jpg",
-      comment: [
-        {
-          id: "2",
-          name: "Anna",
-          lastName: "Nguyen",
-          avatar: "/images/avatar_3.jpg",
-          content: "Wow, so beautiful !!",
-          date: "12 Oct 2023",
-        },
-        {
-          id: "3",
-          name: "Marry",
-          lastName: "Nguyen",
-          avatar: "/images/avatar_4.jpg",
-          content: "Wow, so beautiful !!",
-          date: "12 Oct 2023",
-        },
-      ],
-    },
+    post: [
+      {
+        id: 1,
+        name: "Dom",
+        lastName: "Nguyen",
+        avatar: "/images/avatar_6.jpg",
+        date: "11 Oct 2023",
+        content:
+          "The sun slowly set over the horizon, painting the sky in vibrant hues of orange and pink.",
+        image:
+          "https://api-prod-minimal-v510.vercel.app/assets/images/travel/travel_2.jpg",
+        comment: [
+          {
+            id: "2",
+            name: "Anna",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_3.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+          {
+            id: "3",
+            name: "Marry",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_4.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+        ],
+      },
+      {
+        id: 2,
+        name: "Dom",
+        lastName: "Nguyen",
+        avatar: "/images/avatar_6.jpg",
+        date: "11 Oct 2023",
+        content:
+          "The old oak tree stood tall and majestic, its branches swaying gently in the breeze.",
+        image:
+          "https://api-prod-minimal-v510.vercel.app/assets/images/travel/travel_3.jpg",
+        comment: [
+          {
+            id: "2",
+            name: "Anna",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_2.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+          {
+            id: "3",
+            name: "Marry",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_5.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+        ],
+      },
+      {
+        id: 3,
+        name: "Dom",
+        lastName: "Nguyen",
+        avatar: "/images/avatar_6.jpg",
+        date: "10 Oct 2023",
+        content:
+          "She eagerly opened the gift, her eyes sparkling with excitement.",
+        image:
+          "https://api-prod-minimal-v510.vercel.app/assets/images/travel/travel_4.jpg",
+        comment: [
+          {
+            id: "2",
+            name: "Anna",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_3.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+          {
+            id: "3",
+            name: "Marry",
+            lastName: "Nguyen",
+            avatar: "/images/avatar_4.jpg",
+            content: "Wow, so beautiful !!",
+            date: "12 Oct 2023",
+          },
+        ],
+      },
+    ],
   },
 ];

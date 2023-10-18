@@ -57,19 +57,22 @@ export interface User {
     instagram: string;
   };
   post: {
-    id: string;
-    date: string;
-    content: string;
-    image: string;
-    comment: {
-      id: string;
-      name: string;
-      lastName: string;
-      avatar: string;
-      content: string;
-      date: string;
+    id: number;
+    avatar?: string;
+    name?: string;
+    lastName?: string;
+    date?: string;
+    content?: string;
+    image?: string;
+    comment?: {
+      id?: string;
+      name?: string;
+      lastName?: string;
+      avatar?: string;
+      content?: string;
+      date?: string;
     }[];
-  };
+  }[];
 }
 
 export type Order = "asc" | "desc";
@@ -140,3 +143,11 @@ export type NameClassList =
   | NganhDutruong[];
 
 export type ValueTab = "Profile" | "Followers" | "Friends";
+
+export interface NewPost {
+  id: number;
+  content: string;
+  date: string;
+  time: string;
+  image?: string;
+}

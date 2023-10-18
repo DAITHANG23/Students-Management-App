@@ -7,7 +7,7 @@ import { BsDot } from "react-icons/bs";
 export const StyledSideBar = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.primary.dark,
   width: "18%",
-  height: "1800px",
+  height: "auto",
 }));
 
 export const StyledImage = styled("img")(({ theme }) => ({
